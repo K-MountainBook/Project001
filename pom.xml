@@ -9,14 +9,15 @@
 		<version>2.2.5.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.clone.project</groupId>
+	<groupId>jp.kmb</groupId>
 	<artifactId>atndCloneProject</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>atndCloneProject</name>
 	<description>test</description>
 
 	<properties>
-		<java.version>11</java.version>
+		<java.version>8</java.version>
+		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
 	</properties>
 
 	<dependencies>

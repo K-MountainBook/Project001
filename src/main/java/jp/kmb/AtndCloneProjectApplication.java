@@ -1,4 +1,4 @@
-package com.clone.project;
+package jp.kmb;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
