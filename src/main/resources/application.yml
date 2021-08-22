@@ -3,7 +3,8 @@ spring:
     mode: HTML
 
   datasource:
-    driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/test
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test?serverTimezone=JST
     username: root
-    password: rootpassword
+    password: rootpassword  messages:    fallback-to-system-locale: false  jpa:    show-sql: true
+    hibernate:      ddl-auto: create
