@@ -1,37 +1,24 @@
 <!DOCTYPE html>
-<html xmlns           ="http://www.w3.org/1999/xhtml"
-      xmlns:th        ="http://www.thymeleaf.org"
-      xmlns:layout    ="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorator="base">
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
 
-<head>
-    <title th:text="@{page_title}"></title>
+<head th:replace="header :: common_header">
+    <title>Atnd Copy</title>
 </head>
 
 <body>
-    <div layout:fragment="content">
-        <p th:text="${sample}"></p>
-        <a class="btn btn-primary btn-sm" href="https://twitter.com/deilechang"
-           target="_"> <i class="bi-twitter"></i>
-        </a>
-        <a class="btn btn-primary btn-sm" href="https://discord.gg/vTNadhyTUW"
-           target="_"> <i class="bi-discord"></i>
-        </a>
-        <a class="btn btn-primary btn-sm"
-           href="https://github.com/K-MountainBook" target="_"> <i
-                class="bi-github"></i>
-        </a>
+    <div th:replace="header :: header"></div>
+    <p th:text="${sample}"></p>
 
-        <form method="POST" th:action="@{/confirm}">
-            <input name="inputValue" type="text">
-            <button type="submit">submit</button>
-        </form>
 
-        <div th:each="user : ${users}">
-            <div>[[${user.user_id}]] - [[${user.user_name}]]</div>
-        </div>
+    <form method="POST" th:action="@{/confirm}"><input name="inputValue" type="text">
+        <button type="submit">submit</button>
+    </form>
 
+    <div th:each="user : ${users}">
+        <div>[[${user.user_id}]] - [[${user.user_name}]]</div>
     </div>
+    <div th:replace="footer :: footer"></div>
+
 </body>
 
 </html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+<head>
+    <title>thymeleaf footer</title>
+</head>
+<body>
+    <div th:fragment="footer">
+        <hr>
+        <footer>footer here</footer>
+        <a class="btn btn-primary btn-sm" href="https://twitter.com/deilechang" target="_">
+            <i class="bi-twitter"></i>
+        </a>
+        <a class="btn btn-primary btn-sm" href="https://discord.gg/vTNadhyTUW" target="_">
+            <i class="bi-discord"></i>
+        </a>
+        <a class="btn btn-primary btn-sm" href="https://github.com/K-MountainBook" target="_">
+            <i class="bi-github"></i>
+        </a>
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+    </div>
+</body>
+</html>
