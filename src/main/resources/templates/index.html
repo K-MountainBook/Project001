@@ -1,35 +1,37 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns           ="http://www.w3.org/1999/xhtml"
+      xmlns:th        ="http://www.thymeleaf.org"
+      xmlns:layout    ="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="base">
 
 <head>
-<meta charset="UTF-8">
-<!-- Bootstrap Icons-->
-<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"
-	rel="stylesheet">
-<link th:href="@{/webjars/bootstrap-icons/font/bootstrap-icons.css}"
-	rel="stylesheet">
-<title>Insert title here</title>
+    <title th:text="@{page_title}"></title>
 </head>
 
 <body>
-	<p th:text="${sample}"></p>
-	<a class="btn btn-primary btn-sm" href="https://twitter.com/deilechang"
-		target="_"> <i class="bi-twitter"></i>
-	</a>
-	<a class="btn btn-primary btn-sm" href="https://discord.gg/vTNadhyTUW"
-		target="_"> <i class="bi-discord"></i>
-	</a>
-	<a class="btn btn-primary btn-sm"
-		href="https://github.com/K-MountainBook" target="_"> <i
-		class="bi-github"></i>
-	</a>
+    <div layout:fragment="content">
+        <p th:text="${sample}"></p>
+        <a class="btn btn-primary btn-sm" href="https://twitter.com/deilechang"
+           target="_"> <i class="bi-twitter"></i>
+        </a>
+        <a class="btn btn-primary btn-sm" href="https://discord.gg/vTNadhyTUW"
+           target="_"> <i class="bi-discord"></i>
+        </a>
+        <a class="btn btn-primary btn-sm"
+           href="https://github.com/K-MountainBook" target="_"> <i
+                class="bi-github"></i>
+        </a>
 
-	<form th:action="@{/confirm}" method="POST">
-		<input type="text" name="inputValue">
-		<button type="submit">submit</button>
-	</form>
+        <form method="POST" th:action="@{/confirm}">
+            <input name="inputValue" type="text">
+            <button type="submit">submit</button>
+        </form>
 
-	<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+        <div th:each="user : ${users}">
+            <div>[[${user.user_id}]] - [[${user.user_name}]]</div>
+        </div>
+
+    </div>
 </body>
 
 </html>
