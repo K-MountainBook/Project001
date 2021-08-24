@@ -27,7 +27,7 @@ public class UsersController {
         List<Users> list = usersRepository.findAll();
         model.addAttribute("users", list);
 
-        if (list != null) {
+        if (list.size() != 0) {
             for (Users user : list) {
                 System.out.println(user.getUser_id().toString() + " - " + user.getUser_name());
             }
