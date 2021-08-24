@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="ja">
 <head th:fragment="common_header">
-    <meta charset="UTF-8">
-    <!-- Bootstrap Icons-->
-    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
-    <link rel="stylesheet" th:href="@{/webjars/bootstrap-icons/font/bootstrap-icons.css}">
-    <title>thymeleaf header</title>
+<meta charset="UTF-8">
+<!-- Bootstrap Icons-->
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/webjars/bootstrap-icons/font/bootstrap-icons.css}">
+<link rel="stylesheet" th:href="@{/css/style.css}">
+<title>thymeleaf header</title>
 </head>
-<body>
+<body lang="ja">
     <div th:fragment="header">
-        <header>header here</header>
+        <header>
+                <img th:src="@{/img/logo.png}" class="logo">
+            </div>
+        </header>
         <hr>
     </div>
 </body>
