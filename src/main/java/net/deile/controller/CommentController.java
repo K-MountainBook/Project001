@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import net.deile.model.Comment;
+import net.deile.entity.Comment;
 import net.deile.repository.CommentRepository;
 
 @Controller

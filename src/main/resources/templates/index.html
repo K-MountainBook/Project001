@@ -11,8 +11,10 @@
 
 
     <form method="POST" th:action="@{/confirm}"><input name="inputValue" type="text">
-        <button type="submit">submit</button>
+        <button type="submit">Submit</button>
     </form>
+
+    <a th:href="@{/greeting?message=request}">GET</a>
 
     <div th:each="user : ${users}">
         <div>[[${user.user_id}]] - [[${user.user_name}]]</div>

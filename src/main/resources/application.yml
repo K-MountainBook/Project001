@@ -1,6 +1,6 @@
 spring:
   thymeleaf:
-    mode: HTML
+    mode: HTML    cache: false
 
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
@@ -13,3 +13,5 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: none
+      
+      
