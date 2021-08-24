@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 public class UsersController {
 
 
-    private UsersRepository usersRepository;
+    private final UsersRepository usersRepository;
 
     @Autowired
     public UsersController(UsersRepository repository) {
