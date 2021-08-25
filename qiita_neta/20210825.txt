@@ -1,0 +1,3 @@
+thymeleaf + Springboot + Maven
+
+jakarta validation
