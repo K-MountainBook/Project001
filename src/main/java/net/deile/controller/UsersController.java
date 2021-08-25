@@ -15,7 +15,7 @@ import net.deile.entity.Users;
 import net.deile.repository.UsersRepository;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/test")
 public class UsersController {
 
 
@@ -26,7 +26,7 @@ public class UsersController {
         this.usersRepository = repository;
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public String index(@ModelAttribute Users users, Model model) {
 
         List<Users> list = usersRepository.findAll();

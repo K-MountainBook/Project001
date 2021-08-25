@@ -14,7 +14,9 @@
         <button type="submit">Submit</button>
     </form>
 
-    <a th:href="@{/greeting?message=request}">GET</a>
+    <a th:href="@{/test/greeting?message=request}">GET</a>
+    <br>
+    <a th:href="@{/test/comment}">COMMENT</a>
 
     <div th:each="user : ${users}">
         <div>[[${user.user_id}]] - [[${user.user_name}]]</div>

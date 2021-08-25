@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="ja">
 <head th:fragment="common_header">
-    <meta charset="UTF-8">
-    <!-- Bootstrap Icons-->
-    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
-    <link rel="stylesheet" th:href="@{/webjars/bootstrap-icons/font/bootstrap-icons.css}">
-    <link rel="stylesheet" th:href="@{/css/style.css}">
-    <title>thymeleaf header</title>
+<meta charset="UTF-8">
+<!-- Bootstrap-->
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+<!-- Bootstrap Icons-->
+<link rel="stylesheet" th:href="@{/webjars/bootstrap-icons/font/bootstrap-icons.css}">
+<!-- My Style Sheet-->
+<link rel="stylesheet" th:href="@{/css/style.css}">
+<title th:text="${title}"></title>
 </head>
+
 <body lang="ja">
     <div th:fragment="header">
         <header>
-                <img th:src="@{/img/logo.png}" class="logo">
+            <a th:href="@{/}"> <img th:src="@{/img/logo.png}" class="logo">
+            </a>
         </header>
         <hr>
     </div>
 </body>
+
 </html>

@@ -14,7 +14,7 @@ import net.deile.entity.Comment;
 import net.deile.repository.CommentRepository;
 
 @Controller
-@RequestMapping("/comment")
+@RequestMapping("test/comment")
 public class CommentController {
 
 	private final CommentRepository repository;
@@ -24,7 +24,7 @@ public class CommentController {
 		this.repository = repository;
 	}
 
-	@GetMapping("/")
+	@GetMapping("")
 	public String getAllComments(@ModelAttribute Comment comment, Model model) {
 		model.addAttribute("comments", repository.findAll());
 		return "list";
@@ -39,7 +39,7 @@ public class CommentController {
 		}
 		repository.save(comment);
 
-		return "redirect:/comment/";
+		return "redirect:/comment";
 	}
 
 }
