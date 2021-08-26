@@ -1,16 +1,5 @@
-spring:
-  thymeleaf:
-    mode: HTML
-    cache: false
-  profiles:
-    acrive: dev
-  devtools:
-    remote:
-      restart:
-        enabled: true
-    livereload:
-      enabled: true
 
+spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/test
