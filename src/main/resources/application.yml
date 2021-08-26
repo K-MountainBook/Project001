@@ -1,17 +1,1 @@
-spring:
-  thymeleaf:
-    mode: HTML    cache: false
-
-  datasource:
-    driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/test
-    username: root
-    password: rootpassword
-  messages:
-    fallback-to-system-locale: false
-  jpa:
-    show-sql: true
-    hibernate:
-      ddl-auto: none
-      
-      
+# 環境変数でSPRING_PROFILES_ACTIVE=application.ymlのsuffix
