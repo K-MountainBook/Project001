@@ -1,27 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="ja">
-
-<head th:replace="header :: common_header">
-    <title>Atnd Copy</title>
+<head th:replace="header :: common_header(title = 'Dashboard')">
 </head>
-
 <body>
     <div th:replace="header :: header"></div>
-    <p th:text="${sample}"></p>
 
-
-    <form method="POST" th:action="@{/test/confirm}"><input name="inputValue" type="text">
-        <button type="submit">Submit</button>
-    </form>
-
-    <a th:href="@{/test/greeting?message=request}">GET</a>
-    <br>
-    <a th:href="@{/test/comment}">COMMENT</a>
-    <div th:each="user : ${users}">
-        <div>[[${user.user_id}]] - [[${user.user_name}]]</div>
-    </div>
     <div th:replace="footer :: footer"></div>
-
 </body>
-
 </html>

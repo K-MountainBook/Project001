@@ -11,7 +11,7 @@ public class MainController {
 
 	@GetMapping("")
 	public String index(Model model) {		
-		return "product/dashboard";
+		return "index";
 	}
 	
 }

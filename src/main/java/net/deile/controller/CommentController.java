@@ -27,7 +27,7 @@ public class CommentController {
     @GetMapping("")
     public String getAllComments(@ModelAttribute Comment comment, Model model) {
         model.addAttribute("comments", repository.findAll());
-        return "list";
+        return "test/list";
 
     }
 
@@ -35,7 +35,7 @@ public class CommentController {
     public String addComment(@Validated @ModelAttribute Comment comment, BindingResult result, Model model) {
         model.addAttribute("comments", repository.findAll());
         if (result.hasErrors()) {
-            return "list";
+            return "test/list";
         }
         repository.save(comment);
 
