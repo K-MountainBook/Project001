@@ -5,10 +5,10 @@ spring:
     url: jdbc:mysql://localhost:3306/test
     username: root
     password: rootpassword
+    
   messages:
     fallback-to-system-locale: false
-  jpa:
-    show-sql: true
-    hibernate:
-      ddl-auto: none
-
+#  jpa:
+#    show-sql: true
+#    hibernate:
+#      ddl-auto: none

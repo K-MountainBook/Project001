@@ -1,15 +1,16 @@
 package net.deile.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.annotation.Generated;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
+import org.springframework.data.annotation.Id;
 
 import lombok.Data;
 
 @Data
-@Entity
 public class Users {
+	
 	@Id
 	private Long user_id;
 	@NotBlank

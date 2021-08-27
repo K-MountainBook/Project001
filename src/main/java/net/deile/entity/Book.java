@@ -1,16 +1,12 @@
 package net.deile.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import org.springframework.data.annotation.Id;
 
 import lombok.Data;
 
 @Data
-@Entity
 public class Book {
 	@Id
-	@GeneratedValue
 	private Long id;
 
 	private String title;

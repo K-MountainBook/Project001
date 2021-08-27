@@ -18,41 +18,40 @@ import net.deile.repository.UsersRepository;
 @RequestMapping("/test")
 public class UsersController {
 
+	private final UsersRepository usersRepository;
 
-    private final UsersRepository usersRepository;
+	@Autowired
+	public UsersController(UsersRepository repository) {
+		this.usersRepository = repository;
+	}
 
-    @Autowired
-    public UsersController(UsersRepository repository) {
-        this.usersRepository = repository;
-    }
+	@GetMapping("")
+	public String index(Model model) {
 
-    @GetMapping("")
-    public String index(@ModelAttribute Users users, Model model) {
+		List<Users> list = (List<Users>) usersRepository.findAll();
+		model.addAttribute("users", list);
+		model.addAttribute("message", "msg");
 
-        List<Users> list = usersRepository.findAll();
-        model.addAttribute("users", list);
-        model.addAttribute("message", "msg");
+		if (list.size() != 0) {
+			for (Users user : list) {
+				System.out.println(user.getUser_id().toString() + " - " + user.getUser_name());
+			}
+		}
+		return "test/index";
+	}
 
-        if (list.size() != 0) {
-            for (Users user : list) {
-                System.out.println(user.getUser_id().toString() + " - " + user.getUser_name());
-            }
-        }
-        return "test/index";
-    }
+	@GetMapping("greeting")
+	public String greeting(@RequestParam(required = false) String message, Model model) {
+		model.addAttribute("sample", message);
+		return "test/index";
 
-    @GetMapping("greeting")
-    public String greeting(@RequestParam(required = false) String message, Model model) {
-        model.addAttribute("sample", message);
-        return "test/index";
+	}
 
-    }
+	@PostMapping("confirm")
+	public String confirm(@RequestParam String inputValue, Model model) {
+		model.addAttribute("message", inputValue);
+		return "test/result";
 
-    @PostMapping("confirm")
-    public String confirm(@RequestParam String inputValue, Model model) {
-        model.addAttribute("message", inputValue);
-        return "test/result";
-
-    }
+	}
 
 }
