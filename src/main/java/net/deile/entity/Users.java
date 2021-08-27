@@ -1,6 +1,5 @@
 package net.deile.entity;
 
-import javax.annotation.Generated;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
