@@ -3,9 +3,9 @@ package net.deile.repository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import net.deile.entity.User;
+import net.deile.entity.Book;
 
 @Repository
-public interface UsersRepository extends CrudRepository<User, String> {
+public interface BookRepository extends CrudRepository<Book, Long> {
 
 }

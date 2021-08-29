@@ -6,17 +6,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/")
-public class MainController {
+@RequestMapping("/user")
+public class UserController {
 
 	@GetMapping("")
-	public String index(Model model) {
-		return "index";
-	}
-
-	@GetMapping("profile")
-	public String profileview(Model model) {
-		return "profile";
+	public String viewprofile(Model model) {
+		return "user_profile";
 	}
 
 }
