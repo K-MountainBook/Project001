@@ -1,7 +1,7 @@
 create table user(
-user_id varchar(8) PRIMARY KEY,
+email varchar(64) PRIMARY KEY,
+user_id varchar(8),
 password char(32),
-mail varchar(64),
 twitter varchar(32),
 facebook varchar(64),
 bio varchar(256),

@@ -11,16 +11,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import net.deile.entity.Users;
-import net.deile.repository.UserRepository;
+import net.deile.repository.UsersRepository;
 
 @Controller
 @RequestMapping("/test")
 public class UsersTestController {
 
-	private final UserRepository usersRepository;
+	private final UsersRepository usersRepository;
 
 	@Autowired
-	public UsersTestController(UserRepository repository) {
+	public UsersTestController(UsersRepository repository) {
 		this.usersRepository = repository;
 	}
 
