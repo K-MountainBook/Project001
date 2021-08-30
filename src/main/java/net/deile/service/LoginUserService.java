@@ -3,6 +3,7 @@ package net.deile.service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -23,8 +24,11 @@ public class LoginUserService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+		System.out.println("Run loadUserByUsername");
+		User user = userRepository.findByemail(username);
+
+		return user;
+
 	}
 
 	public void authenticationLogin(String email, String pswd) {

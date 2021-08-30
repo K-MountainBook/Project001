@@ -8,4 +8,6 @@ import net.deile.entity.User;
 @Repository
 public interface UserRepository extends CrudRepository<User, String> {
 
+	User findByemail(String email);
+
 }

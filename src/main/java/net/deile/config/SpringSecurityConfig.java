@@ -16,7 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
-public class SpringbootSecurityConfig extends WebSecurityConfigurerAdapter {
+public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	DataSource datasource;
@@ -38,9 +38,10 @@ public class SpringbootSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests().anyRequest().permitAll();
-		//このコードを入れるとSpringSecurityのデフォルトのログイン画面が表示されるようになる
-		//				http.formLogin().usernameParameter("email").passwordParameter("pswd");
-		//		http.authorizeRequests().antMatchers("/product/**").permitAll().anyRequest().permitAll();
+		// ログイン関連の処理
+		http.formLogin().loginPage("/login").defaultSuccessUrl("/").failureUrl("/login").usernameParameter("email")
+				.passwordParameter("pswd");
+		// http.authorizeRequests().antMatchers("/product/**").permitAll().anyRequest().permitAll();
 	}
 
 	@Override
