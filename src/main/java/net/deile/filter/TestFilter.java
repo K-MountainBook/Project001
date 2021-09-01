@@ -14,14 +14,11 @@ public class TestFilter extends UsernamePasswordAuthenticationFilter {
 	public Authentication attemptAuthentication(HttpServletRequest req, HttpServletResponse res)
 			throws AuthenticationException {
 
-		final String mail = (String) req.getAttribute("email");
-		final String pswd = (String) req.getAttribute("pswd");
+		System.out.println(req.getAttribute("email"));
+		System.out.println(req.getAttribute("pswd"));
+		
+		return null;
 
-		final UsernamePasswordAuthenticationToken creds = new UsernamePasswordAuthenticationToken(mail, pswd);
-
-		return getAuthenticationManager().authenticate(creds);
-
-//		return super.attemptAuthentication(req, res);
 	}
 
 }
