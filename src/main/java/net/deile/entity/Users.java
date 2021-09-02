@@ -9,7 +9,7 @@ import lombok.Data;
 
 @Data
 public class Users {
-	
+
 	@Id
 	private Long user_id;
 	@NotBlank

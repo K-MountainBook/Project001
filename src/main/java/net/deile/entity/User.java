@@ -1,10 +1,8 @@
 package net.deile.entity;
 
 import java.util.Collection;
-import java.util.Objects;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Table;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
