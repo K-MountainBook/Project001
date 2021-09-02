@@ -1,9 +1,13 @@
 package net.deile.controller;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import net.deile.entity.User;
 
 //import net.deile.service.LoginUserService;
 
@@ -26,4 +30,10 @@ public class MainController {
 		return "login";
 	}
 
+	@PostMapping("login")
+	public String loginCheck(@AuthenticationPrincipal User user) {
+
+		return "index";
+
+	}
 }
