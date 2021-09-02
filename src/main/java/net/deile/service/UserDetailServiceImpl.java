@@ -10,7 +10,7 @@ import net.deile.entity.User;
 import net.deile.repository.UserRepository;
 
 @Service
-public class AccountDetailService implements UserDetailsService {
+public class UserDetailServiceImpl implements UserDetailsService {
 
 	@Autowired
 	UserRepository userRepository;
@@ -19,6 +19,7 @@ public class AccountDetailService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String email) {
 
 		User user = userRepository.findByemail(email);
+		// ユーザが取得できない場合投げる
 		if (user == null) {
 			throw new UsernameNotFoundException(email);
 		}

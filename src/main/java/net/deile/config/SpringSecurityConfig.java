@@ -14,7 +14,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import net.deile.service.AccountDetailService;
+import net.deile.service.UserDetailServiceImpl;
 
 @Configuration
 @EnableWebSecurity
@@ -24,12 +24,32 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	DataSource datasource;
 
 	@Autowired
-	AccountDetailService userDetailsService;
+	UserDetailServiceImpl userDetailsService;
 
+	/**
+	 * <ul>
+	 * <li>bcrypt - {@link BCryptPasswordEncoder} (Also used for encoding)</li>
+	 * <li>ldap -
+	 * {@link org.springframework.security.crypto.password.LdapShaPasswordEncoder}</li>
+	 * <li>MD4 -
+	 * {@link org.springframework.security.crypto.password.Md4PasswordEncoder}</li>
+	 * <li>MD5 - {@code new MessageDigestPasswordEncoder("MD5")}</li>
+	 * <li>noop -
+	 * {@link org.springframework.security.crypto.password.NoOpPasswordEncoder}</li>
+	 * <li>pbkdf2 - {@link Pbkdf2PasswordEncoder}</li>
+	 * <li>scrypt - {@link SCryptPasswordEncoder}</li>
+	 * <li>SHA-1 - {@code new MessageDigestPasswordEncoder("SHA-1")}</li>
+	 * <li>SHA-256 - {@code new MessageDigestPasswordEncoder("SHA-256")}</li>
+	 * <li>sha256 -
+	 * {@link org.springframework.security.crypto.password.StandardPasswordEncoder}</li>
+	 * <li>argon2 - {@link Argon2PasswordEncoder}</li>
+	 * </ul>
+	 * 
+	 * @return the {@link PasswordEncoder} to use
+	 */
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
-//		return new BCryptPasswordEncoder();
 
 	}
 
@@ -48,17 +68,16 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+		// アクセスコントロールの設定
 		http.authorizeRequests().anyRequest().permitAll();
-		// ログイン関連の処理
+		// ログイン画面の設定
 		http.formLogin().loginPage("/login").defaultSuccessUrl("/").failureUrl("/login").usernameParameter("email")
 				.passwordParameter("pswd");
-		// http.authorizeRequests().antMatchers("/product/**").permitAll().anyRequest().permitAll();
+		http.logout().logoutSuccessUrl("/login").permitAll();
 	}
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		System.out.println("run configure auth");
-
 		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
 		super.configure(auth);
 	}
