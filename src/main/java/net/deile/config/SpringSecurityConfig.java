@@ -11,8 +11,12 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
+import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
 
 import net.deile.service.UserDetailServiceImpl;
 
@@ -44,7 +48,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	 * {@link org.springframework.security.crypto.password.StandardPasswordEncoder}</li>
 	 * <li>argon2 - {@link Argon2PasswordEncoder}</li>
 	 * </ul>
-	 * 
+	 *
 	 * @return the {@link PasswordEncoder} to use
 	 */
 	@Bean
@@ -71,9 +75,9 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 		// アクセスコントロールの設定
 		http.authorizeRequests().anyRequest().permitAll();
 		// ログイン画面の設定
-		http.formLogin().loginPage("/login").defaultSuccessUrl("/").failureUrl("/login").usernameParameter("email")
+		http.formLogin().loginPage("/login").defaultSuccessUrl("/dashboard").failureUrl("/login").usernameParameter("email")
 				.passwordParameter("pswd");
-		http.logout().logoutSuccessUrl("/login").permitAll();
+		http.logout().logoutSuccessUrl("/").permitAll();
 	}
 
 	@Override

@@ -10,9 +10,12 @@ import lombok.Data;
 
 @Data
 public class User implements UserDetails {
+	private static final long serialVersionUID = -1265704869442848047L;
 
 	@Id
 	private String email;
+
+	private String user_name;
 
 	private String user_id;
 

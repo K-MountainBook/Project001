@@ -31,9 +31,17 @@ public class MainController {
 	}
 
 	@PostMapping("login")
-	public String loginCheck(@AuthenticationPrincipal User user) {
+	public void loginCheck(@AuthenticationPrincipal User user) {
+		// Sprint securityがうまくやってくれてログインできます。
+	}
 
-		return "index";
+	@GetMapping("dashboard")
+	public String showDashboard(@AuthenticationPrincipal User user, Model model) {
+
+		// 参加する予定のカレンダー
+		// 参加する予定のイベントの一覧
+
+		return "dashboard";
 
 	}
 }
