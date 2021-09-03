@@ -1,14 +1,10 @@
 package net.deile.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.springframework.data.annotation.Id;
 
 import lombok.Data;
 
 @Data
-@Entity
-@Table(name = "event")
 public class Event {
 
 	@Id
