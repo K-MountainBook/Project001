@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import net.deile.entity.Event;
 import net.deile.repository.EventRepository;
+import net.deile.service.interfaces.EventService;
 
 @Service
 public class EventServiceImpl implements EventService {
