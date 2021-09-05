@@ -4,7 +4,6 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import net.deile.entity.User;
@@ -17,6 +16,7 @@ public class MainController {
 
 	@GetMapping("")
 	public String index(Model model) {
+
 		return "index";
 	}
 
@@ -28,11 +28,6 @@ public class MainController {
 	@GetMapping("login")
 	public String loginGet(Model model) {
 		return "login";
-	}
-
-	@PostMapping("login")
-	public void loginCheck(@AuthenticationPrincipal User user) {
-		// Sprint securityがうまくやってくれてログインできます。
 	}
 
 	@GetMapping("dashboard")

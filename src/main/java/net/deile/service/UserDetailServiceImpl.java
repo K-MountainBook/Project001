@@ -1,30 +1,35 @@
 package net.deile.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import net.deile.entity.User;
 import net.deile.repository.UserRepository;
+import net.deile.service.interfaces.UserDetailService;
 
 @Service
-public class UserDetailServiceImpl implements UserDetailsService {
+public class UserDetailServiceImpl implements UserDetailService {
 
 	@Autowired
 	UserRepository userRepository;
 
-	@Override
-	public UserDetails loadUserByUsername(String email) {
+	@Transactional
+	public boolean signUpUser(User user) {
+		//
+		boolean result = true;
+		//
+		//		try {
+		//			userRepository.save(user);
+		//		} catch (IllegalArgumentException e) {
+		//			result = false;
+		//		}
 
-		User user = userRepository.findByemail(email);
-		// ユーザが取得できない場合投げる
-		if (user == null) {
-			throw new UsernameNotFoundException(email);
-		}
+		//		List<User> list = userRepository.findUser(user.getEmail());
+		//		System.out.println(list.size());
 
-		return user;
+		return result;
+
 	}
 
 }

@@ -1,18 +1,13 @@
 package net.deile.entity;
 
-import java.util.Collection;
-
-import org.springframework.data.annotation.Id;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+import javax.persistence.Table;
 
 import lombok.Data;
 
 @Data
-public class User implements UserDetails {
-	private static final long serialVersionUID = -1265704869442848047L;
+@Table(name = "user")
+public class User {
 
-	@Id
 	private String email;
 
 	private String user_name;
@@ -30,41 +25,5 @@ public class User implements UserDetails {
 	private String homepage;
 
 	private String group_id;
-
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
-	}
-
-	@Override
-	public String getUsername() {
-		// TODO 自動生成されたメソッド・スタブ
-		return email;
-	}
-
-	@Override
-	public boolean isAccountNonExpired() {
-		// TODO 自動生成されたメソッド・スタブ
-		return true;
-	}
-
-	@Override
-	public boolean isAccountNonLocked() {
-		// TODO 自動生成されたメソッド・スタブ
-		return true;
-	}
-
-	@Override
-	public boolean isCredentialsNonExpired() {
-		// TODO 自動生成されたメソッド・スタブ
-		return true;
-	}
-
-	@Override
-	public boolean isEnabled() {
-		// TODO 自動生成されたメソッド・スタブ
-		return true;
-	}
 
 }

@@ -10,4 +10,6 @@ public interface UserRepository extends CrudRepository<User, String> {
 
 	User findByemail(String email);
 
+	<S extends User> S save(User user);
+
 }

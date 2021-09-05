@@ -1,35 +1,39 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" lang="ja">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	lang="ja">
 <head th:fragment="common_header">
 <meta charset="UTF-8">
 <!-- Bootstrap-->
-<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+<link rel="stylesheet"
+	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
 <!-- Bootstrap Icons-->
-<link rel="stylesheet" th:href="@{/webjars/bootstrap-icons/font/bootstrap-icons.css}">
+<link rel="stylesheet"
+	th:href="@{/webjars/bootstrap-icons/font/bootstrap-icons.css}">
 <!-- My Style Sheet-->
 <link rel="stylesheet" th:href="@{/css/style.css}">
 <title th:text="${title}"></title>
 </head>
 
 <body lang="ja">
-    <div th:fragment="header">
-        <header>
-            <a th:href="@{/}"> <img th:src="@{/img/logo.png}" class="logo">
-            </a>
-            <div sec:authorize="isAnonymous()">
-                <a th:href="@{/login}">Login</a>
-            </div>
-            <div sec:authorize="isAuthenticated()">
-                <div>
-                    <span sec:authentication="principal.user_name"></span>さんでログイン中
-                </div>
-                <form th:action="@{/logout}" method="post">
-                    <button class="btn btn-primary" type="submit">Logout</button>
-                </form>
-            </div>
-        </header>
-        <hr>
-    </div>
+	<div th:fragment="header">
+		<header>
+			<a th:href="@{/}"> <img th:src="@{/img/logo.png}" class="logo">
+			</a>
+			<div sec:authorize="isAnonymous()">
+				<a th:href="@{/login}">Login</a> <a th:href="@{/signup}">Signup</a>
+			</div>
+			<div sec:authorize="isAuthenticated()">
+				<div>
+					<span sec:authentication="principal.user_name"></span>さんでログイン中
+				</div>
+				<form th:action="@{/logout}" method="post">
+					<button class="btn btn-primary" type="submit">Logout</button>
+				</form>
+			</div>
+		</header>
+		<hr>
+	</div>
 </body>
 
 </html>
