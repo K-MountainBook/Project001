@@ -1,3 +1,1 @@
-# something
-
-OAuthの実装
+# Spring bootとか
