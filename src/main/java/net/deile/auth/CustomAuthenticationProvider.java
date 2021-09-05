@@ -34,6 +34,8 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		// ここで認証とロールの付与
 		System.out.println(passwordEncoder().encode(user.getPassword()));
 
+		passwordEncoder().matches("rowpass", "encpass");
+
 		user.setUser_name("テストユーザ");
 
 		Collection<GrantedAuthority> authorityList = new ArrayList<>();
