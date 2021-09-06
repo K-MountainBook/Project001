@@ -3,6 +3,8 @@ package net.deile.auth;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -12,11 +14,13 @@ import net.deile.entity.User;
 
 public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
+	Logger logger = LoggerFactory.getLogger(Thread.currentThread().getStackTrace()[1].getClassName());
+
 	@Override
 	public Authentication attemptAuthentication(HttpServletRequest req, HttpServletResponse res)
 			throws AuthenticationException {
 
-		System.out.println("Run CustomAuthenticationFilter");
+		logger.info("Run CustomAuthenticationFilter");
 
 		User user = new User();
 

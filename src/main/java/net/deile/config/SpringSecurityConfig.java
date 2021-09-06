@@ -12,6 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
+import org.springframework.security.web.authentication.ExceptionMappingAuthenticationFailureHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import net.deile.auth.CustomAuthenticationFilter;
@@ -65,12 +66,18 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 		// filter.setAuthenticationFailureHandler(new
 		// SimpleUrlAuthenticationFailureHandler("/login?error"));
 
+		// Exceptionの設定
+		ExceptionMappingAuthenticationFailureHandler failureHander = new ExceptionMappingAuthenticationFailureHandler();
+
+		failureHander.setDefaultFailureUrl("/login");
+
+		filter.setAuthenticationFailureHandler(failureHander);
+
 		http.addFilterBefore(filter, CustomAuthenticationFilter.class);
 	}
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
 		auth.authenticationProvider(authenticationProvider);
 	}
 

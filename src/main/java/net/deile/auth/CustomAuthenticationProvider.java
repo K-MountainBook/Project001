@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -27,6 +28,8 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 	@Autowired
 	UserDetailServiceImpl userDetailService;
 
+	Logger logger = LoggerFactory.getLogger(Thread.currentThread().getStackTrace()[1].getClassName());
+
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
@@ -36,13 +39,10 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 	@Override
 	public Authentication authenticate(Authentication auth) throws AuthenticationException {
 
-		System.out.println("Run CustomAuthenticationProvider");
+		logger.info("Run CustomAuthenticationProvider");
 
 		User user = (User) auth.getPrincipal();
 		Object password = auth.getCredentials();
-
-		// ここで認証とロールの付与
-		System.out.println(passwordEncoder().encode(user.getPassword()));
 
 		// DBからユーザを抽出する。
 		List<User> users = userDetailService.findByEmail(user.getEmail());
@@ -50,6 +50,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
 		if (users.size() != 1 || users == null) {
 			// エラー
+			logger.info("Can not find user");
 			throw new BadCredentialsException("email or passwod error");
 		} else {
 			findUser = users.get(0);
@@ -57,9 +58,10 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
 		// パスワードの整合性チェック
 		if (passwordEncoder().matches(user.getPassword(), findUser.getPassword())) {
-			System.out.println("password accepted");
+			// パスワード一致
 		} else {
 			// パスワードが一致しないのでエラー
+			logger.info("No match password");
 			throw new BadCredentialsException("email or passwod error");
 		}
 
@@ -68,8 +70,6 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		Collection<GrantedAuthority> authorityList = new ArrayList<>();
 		authorityList.add(new SimpleGrantedAuthority("ROLE_USER"));
 
-		// return new UsernamePasswordAuthenticationToken(user, password,
-		// auth.getAuthorities());
 		return new UsernamePasswordAuthenticationToken(user, password, authorityList);
 	}
 
