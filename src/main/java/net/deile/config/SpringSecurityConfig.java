@@ -56,14 +56,14 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 		// アクセスコントロールの設定
 		http.authorizeRequests().anyRequest().permitAll();
 		// ログイン画面の設定
-		http.formLogin().loginPage("/login").defaultSuccessUrl("/dashboard").failureUrl("/login")
-				.usernameParameter("email")
-				.passwordParameter("pswd");
+		http.formLogin().loginPage("/login").defaultSuccessUrl("/dashboard").failureUrl("/login?error")
+				.usernameParameter("email").passwordParameter("pswd");
 		http.logout().logoutSuccessUrl("/").permitAll();
 		CustomAuthenticationFilter filter = new CustomAuthenticationFilter();
 		filter.setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher("/login", "POST"));
 		filter.setAuthenticationManager(authenticationManagerBean());
-		//		filter.setAuthenticationFailureHandler(new SimpleUrlAuthenticationFailureHandler("/login?error"));
+		// filter.setAuthenticationFailureHandler(new
+		// SimpleUrlAuthenticationFailureHandler("/login?error"));
 
 		http.addFilterBefore(filter, CustomAuthenticationFilter.class);
 	}
