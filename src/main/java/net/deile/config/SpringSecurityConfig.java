@@ -66,11 +66,13 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 		// filter.setAuthenticationFailureHandler(new
 		// SimpleUrlAuthenticationFailureHandler("/login?error"));
 
-		// Exceptionの設定
+		// Exceptionを検知するハンドラ
 		ExceptionMappingAuthenticationFailureHandler failureHander = new ExceptionMappingAuthenticationFailureHandler();
 
+		// ログイン失敗時の遷移先URL
 		failureHander.setDefaultFailureUrl("/login");
 
+		// ログイン失敗をキャッチするハンドラを設定
 		filter.setAuthenticationFailureHandler(failureHander);
 
 		http.addFilterBefore(filter, CustomAuthenticationFilter.class);
@@ -78,6 +80,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		// autheticationProviderの設定
 		auth.authenticationProvider(authenticationProvider);
 	}
 

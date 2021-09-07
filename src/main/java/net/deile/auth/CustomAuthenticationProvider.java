@@ -36,41 +36,49 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
 	}
 
+	/**
+	 * 認証/認可処理
+	 */
 	@Override
 	public Authentication authenticate(Authentication auth) throws AuthenticationException {
 
 		logger.info("Run CustomAuthenticationProvider");
 
-		User user = (User) auth.getPrincipal();
-		Object password = auth.getCredentials();
+		String user_email = (String) auth.getPrincipal();
+		String password = (String) auth.getCredentials();
 
 		// DBからユーザを抽出する。
-		List<User> users = userDetailService.findByEmail(user.getEmail());
-		User findUser = new User();
+		List<User> users = userDetailService.findByEmail(user_email);
+		User findUser;
 
+		// 抽出した件数が1件以外であればエラー
 		if (users.size() != 1 || users == null) {
-			// エラー
-			logger.info("Can not find user");
+			logger.warn("Can not find user");
 			throw new BadCredentialsException("email or passwod error");
 		} else {
 			findUser = users.get(0);
 		}
 
 		// パスワードの整合性チェック
-		if (passwordEncoder().matches(user.getPassword(), findUser.getPassword())) {
+		if (passwordEncoder().matches(password, findUser.getPassword())) {
 			// パスワード一致
+			logger.info("Login success : " + user_email);
 		} else {
 			// パスワードが一致しないのでエラー
-			logger.info("No match password");
+			logger.warn("No match password");
 			throw new BadCredentialsException("email or passwod error");
 		}
 
-		user.setUser_name(findUser.getUser_name());
+		// DBから抽出したユーザ情報を設定
+		findUser.setEmail(user_email);
+		findUser.setPassword("");
+		findUser.setUser_name(findUser.getUser_name());
 
+		// ロールの追加
 		Collection<GrantedAuthority> authorityList = new ArrayList<>();
 		authorityList.add(new SimpleGrantedAuthority("ROLE_USER"));
 
-		return new UsernamePasswordAuthenticationToken(user, password, authorityList);
+		return new UsernamePasswordAuthenticationToken(findUser, password, authorityList);
 	}
 
 	@Override

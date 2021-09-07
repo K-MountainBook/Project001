@@ -22,16 +22,13 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
 
 		logger.info("Run CustomAuthenticationFilter");
 
-		User user = new User();
-
-		user.setEmail(req.getParameter("email"));
-		user.setPassword(req.getParameter("pswd"));
-
 		// トークンの作成
-		UsernamePasswordAuthenticationToken authreq = new UsernamePasswordAuthenticationToken(user, res);
+		UsernamePasswordAuthenticationToken authreq = new UsernamePasswordAuthenticationToken(req.getParameter("email"),
+				req.getParameter("pswd"));
 
 		setDetails(req, authreq);
 
+		// Managerを経由してAuthenticationProviderを使用
 		return this.getAuthenticationManager().authenticate(authreq);
 	}
 
