@@ -45,7 +45,7 @@ public class SignupController {
 		user.setUser_name("");
 
 		// userテーブルへ登録
-		int insertCnt = userDetailServiceImpl.signUpUser(user);
+		userDetailServiceImpl.signUpUser(user);
 
 		return "index";
 	}
