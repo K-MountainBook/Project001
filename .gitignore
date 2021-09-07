@@ -32,6 +32,6 @@ build/
 /bin/
 
 ### LOG ###
+!/logs/**
 /logs/*.log
 /logs/*.gz
-!/logs/**
