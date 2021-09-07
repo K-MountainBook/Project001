@@ -1,5 +1,7 @@
 package net.deile.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +18,8 @@ import net.deile.service.UserDetailServiceImpl;
 @RequestMapping("/signup")
 public class SignupController {
 
+	Logger logger = LoggerFactory.getLogger(Thread.currentThread().getStackTrace()[1].getClassName());
+
 	@Autowired
 	UserDetailServiceImpl userDetailServiceImpl;
 
@@ -26,8 +30,8 @@ public class SignupController {
 
 	@PostMapping("")
 	public String singupForm(@ModelAttribute("signinForm") SigninForm form, Model model) {
-		//		System.out.println(form.getEmail());
-		//		System.out.println(form.getPswd());
+		// System.out.println(form.getEmail());
+		// System.out.println(form.getPswd());
 		User user = new User();
 		// emailアドレスとパスワードを検証
 		user.setEmail(form.getEmail());
@@ -41,7 +45,7 @@ public class SignupController {
 		user.setUser_name("");
 
 		// userテーブルへ登録
-		userDetailServiceImpl.signUpUser(user);
+		int insertCnt = userDetailServiceImpl.signUpUser(user);
 
 		return "index";
 	}

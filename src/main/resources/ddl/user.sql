@@ -11,6 +11,6 @@ group_id varchar(64) NULL
 );
 
 
-delete from user where email = 'test'
+delete from user where email = 'test';
 
 insert into user (email, password, user_name) values('test','{bcrypt}$2a$10$OODsUZn4T5MRILPQZDNMFu6SamGLYVzMozkoCM/BZl7mXzroTMzAW', 'テストユーザ０１');
