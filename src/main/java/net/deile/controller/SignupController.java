@@ -30,8 +30,9 @@ public class SignupController {
 
 	@PostMapping("")
 	public String singupForm(@ModelAttribute("signinForm") SigninForm form, Model model) {
-		// System.out.println(form.getEmail());
-		// System.out.println(form.getPswd());
+
+		String resultReturn = "index";
+
 		User user = new User();
 		// emailアドレスとパスワードを検証
 		user.setEmail(form.getEmail());
@@ -44,10 +45,26 @@ public class SignupController {
 		user.setUser_id("");
 		user.setUser_name("");
 
-		// userテーブルへ登録
-		userDetailServiceImpl.signUpUser(user);
+		if (user.getEmail().equals("") || user.getPassword().equals("")) {
+			logger.warn("email or password is empty");
+			resultReturn = "index";
+		}
 
-		return "index";
+		if (!user.getEmail().equals("") && !user.getPassword().equals("")) {
+			// userテーブルへ登録
+			if (userDetailServiceImpl.signUpUser(user)) {
+				resultReturn = "signupconfirm";
+			} else {
+				resultReturn = "signup";
+			}
+		}
+
+		return resultReturn;
+	}
+
+	@GetMapping("signupconfirm")
+	public String signupConfirm(Model model) {
+		return "signupconfirm";
 	}
 
 }

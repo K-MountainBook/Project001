@@ -26,4 +26,6 @@ public class User {
 
 	private String group_id;
 
+	private boolean enable;
+
 }

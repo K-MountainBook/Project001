@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import net.deile.entity.User;
 import net.deile.repository.UserRepository;
@@ -33,9 +32,9 @@ public class UserDetailServiceImpl implements UserDetailService {
 		//
 		boolean result = true;
 
-		List<User> userexists = userRepository.findByEmail(user.getEmail());
+		List<User> userExists = userRepository.findByEmail(user.getEmail());
 
-		if (userexists.size() > 0) {
+		if (userExists.size() > 0) {
 			result = false;
 		}
 
