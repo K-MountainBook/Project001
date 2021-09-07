@@ -34,3 +34,4 @@ build/
 ### LOG ###
 /logs/*.log
 /logs/*.gz
+/logs/**
