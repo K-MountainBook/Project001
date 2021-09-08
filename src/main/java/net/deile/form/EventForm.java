@@ -1,7 +1,5 @@
 package net.deile.form;
 
-import java.sql.Date;
-
 import lombok.Data;
 
 @Data
@@ -13,7 +11,13 @@ public class EventForm {
 
 	private String address;
 
-	private String date;
+	private String fromDate;
+
+	private String toDate;
+
+	private String fromTime;
+
+	private String toTime;
 
 	private Integer max_participant;
 
