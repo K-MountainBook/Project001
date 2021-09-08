@@ -1,10 +1,38 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="ja">
-<head th:replace="header :: common_header(title = 'Event Details')">
+<head th:replace="header :: common_header(title = 'Sign Up')">
 </head>
 <body>
-    <div th:replace="header :: header"></div>
-    <div th:replace="footer :: footer"></div>
+	<div th:replace="header :: header"></div>
+	<!--/* イベント作成フォームを作成 */-->
+	<form th:action="@{/event/make}" method="post" name="EventForm">
+		<p>
+			<input type="text" id="title" name="title" class="form-control"
+				placeholder="Title">
+		</p>
+		<p>
+			<textarea id="details" name="details" class="form-control"
+				placeholder="Details"></textarea>
+		</p>
+		<p>
+			<input type="text" id="address" name="address" class="form-control"
+				placeholder="Address">
+		</p>
+		<p>
+			<input type="number" id="max_participant" name="max_participant"
+				class="form-control" placeholder="max_participant">
+		</p>
+		<p>
+			<input type="datetime-local" id="date" name="date"
+				class="form-control" placeholder="Date">
+		</p>
+		<p>
+			<input type="checkbox" id="public_flag" name="public_flag"
+				class="form-check-input" placeholder="public_flag" checked>
+		</p>
+		<button class="btn btn-primary" type="submit">確認</button>
+	</form>
+	<div th:replace="footer :: footer"></div>
 
 </body>
 </html>

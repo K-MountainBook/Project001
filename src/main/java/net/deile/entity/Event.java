@@ -1,5 +1,7 @@
 package net.deile.entity;
 
+import java.sql.Date;
+
 import org.springframework.data.annotation.Id;
 
 import lombok.Data;
@@ -15,6 +17,8 @@ public class Event {
 	private String details;
 
 	private String address;
+
+	private Date date;
 
 	private Integer max_participant;
 
