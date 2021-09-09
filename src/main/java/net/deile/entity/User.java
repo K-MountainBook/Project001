@@ -2,12 +2,15 @@ package net.deile.entity;
 
 import javax.persistence.Table;
 
+import org.springframework.data.annotation.Id;
+
 import lombok.Data;
 
 @Data
 @Table(name = "user")
 public class User {
 
+	@Id
 	private String email;
 
 	private String user_name;

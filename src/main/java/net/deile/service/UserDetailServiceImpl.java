@@ -1,6 +1,7 @@
 package net.deile.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,9 +33,9 @@ public class UserDetailServiceImpl implements UserDetailService {
 		//
 		boolean result = true;
 
-		List<User> userExists = userRepository.findByEmail(user.getEmail());
+		Optional<User> userExists = userRepository.findById(user.getEmail());
 
-		if (userExists.size() > 0) {
+		if (!userExists.isEmpty()) {
 			result = false;
 		}
 
