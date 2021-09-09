@@ -18,7 +18,9 @@ public class Event {
 
 	private String address;
 
-	private Date date;
+	private String fromDate;
+
+	private String toDate;
 
 	private Integer max_participant;
 
