@@ -1,5 +1,12 @@
 package net.deile.controller;
 
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,21 +54,51 @@ public class EventController {
 
 	@PostMapping("/make")
 	public String makePost(EventForm form, Model model) {
+		logger.info("Run makePost");
 		// イベントの登録処理とバリデーション
 		Event event = new Event();
-		// バリデーション
+		try {
+			final DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			Timestamp fromDate = new Timestamp(
+					df.parse(form.getFromDate() + " " + form.getFromTime() + ":00").getTime());
+			Timestamp toDate = new Timestamp(df.parse(form.getToDate() + " " + form.getToTime() + ":00").getTime());
 
-		// 登録処理
-		event.setTitle(form.getTitle());
-		event.setDetails(form.getDetails());
-		event.setAddress(form.getAddress());
-		event.setFromDate(form.getFromDate() + form.getFromTime());
-		event.setToDate(form.getToDate() + form.getToTime());
-		event.setParticipant(0);
-		event.setMax_participant(form.getMax_participant());
-		event.setPublic_flag(form.getPublic_flag());
+			System.out.println(fromDate);
+			System.out.println(toDate);
 
-		eventServiceImpl.save(null);
+			// バリデーション
+
+			// 登録処理
+			event.setTitle(form.getTitle());
+			event.setDetails(form.getDetails());
+			event.setAddress(form.getAddress());
+			event.setFromDate(fromDate);
+			event.setToDate(toDate);
+			event.setParticipant(0);
+			event.setMax_participant(form.getMax_participant());
+			event.setPublic_flag(form.getPublic_flag());
+			// TODO Ownerをセッションから取得して格納する。
+			event.setOwner("");
+
+			eventServiceImpl.save(event);
+			return "redirect:/event/event_list";
+
+		} catch (ParseException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+			return "exception";
+		}
+	}
+
+	@GetMapping("/event_list")
+	public String event_list(Model model) {
+		logger.info("Run eventlist");
+		// TODO ログインユーザがオーナーのイベントを検索
+		List<Event> ownerEvent = new ArrayList<>();
+		ownerEvent = eventServiceImpl.findAllByemail("");
+
+		model.addAttribute("ownerEvent", ownerEvent);
+
 		return "event_list";
 	}
 

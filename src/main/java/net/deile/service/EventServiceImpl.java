@@ -1,5 +1,7 @@
 package net.deile.service;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +19,17 @@ public class EventServiceImpl implements EventService {
 
 	Logger logger = LoggerFactory.getLogger(Thread.currentThread().getStackTrace()[1].getClassName());
 
-	public Event findById(String event_id) {
+	public Event findById(long event_id) {
 		return eventRepository.findById(event_id).get();
 	}
 
 	public Event save(Event event) {
 		return eventRepository.save(event);
+	}
+
+	public List<Event> findAllByemail(String email) {
+		// TODO 自動生成されたメソッド・スタブ
+		return eventRepository.findallByEmail(email);
 	}
 
 }
