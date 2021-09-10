@@ -10,7 +10,7 @@ import lombok.Data;
 public class Event {
 
 	@Id
-	private String event_id;
+	private long event_id;
 
 	private String title;
 

@@ -3,20 +3,18 @@
 <head th:replace="header :: common_header(title = 'Sign Up')">
 </head>
 <body>
-	<div th:replace="header :: header"></div>
-	<!--/* サインアップフォームを作成 */-->
-	<form th:action="@{/signup}" method="post" name="signinForm">
-		<p>
-			<input type="text" id="email" name="email" class="form-control"
-				placeholder="E-Mail Address">
-		</p>
-		<p>
-			<input type="password" id="pswd" name="pswd" class="form-control"
-				placeholder="Password">
-		</p>
-		<button class="btn btn-primary" type="submit">ログイン</button>
-	</form>
-	<div th:replace="footer :: footer"></div>
+    <div th:replace="header :: header"></div>
+    <!--/* サインアップフォームを作成 */-->
+    <form th:action="@{/signup}" method="post" th:object="${signinForm}">
+        <p>
+            <input type="text" th:field="*{email}" class="form-control" placeholder="E-Mail Address">
+        </p>
+        <p>
+            <input type="password" th:field="*{pswd}" class="form-control" placeholder="Password">
+        </p>
+        <button class="btn btn-primary" type="submit">ログイン</button>
+    </form>
+    <div th:replace="footer :: footer"></div>
 
 </body>
 </html>

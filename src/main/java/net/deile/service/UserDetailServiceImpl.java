@@ -1,5 +1,6 @@
 package net.deile.service;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,7 +30,7 @@ public class UserDetailServiceImpl implements UserDetailService {
 
 	Logger logger = LoggerFactory.getLogger(Thread.currentThread().getStackTrace()[1].getClassName());
 
-	public boolean signUpUser(User user) {
+	public boolean signUpUser(User user) throws SQLException {
 		//
 		boolean result = true;
 
@@ -45,7 +46,7 @@ public class UserDetailServiceImpl implements UserDetailService {
 			String pswd = passwordEncoder().encode(user.getPassword());
 			int insertCnt = userRepository.insert(email, pswd);
 			if (insertCnt != 1) {
-				result = false;
+				throw new SQLException("ユーザのinsert処理に失敗しました。");
 			}
 		}
 

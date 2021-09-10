@@ -1,5 +1,5 @@
 create table event(
- event_id CHAR(12) PRIMARY KEY,
+ event_id BIGINT PRIMARY KEY,
  title VARCHAR(100),
  details TEXT,
  address VARCHAR(120),

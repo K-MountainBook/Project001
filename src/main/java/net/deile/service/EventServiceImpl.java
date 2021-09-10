@@ -21,4 +21,8 @@ public class EventServiceImpl implements EventService {
 		return eventRepository.findById(event_id).get();
 	}
 
+	public Event save(Event event) {
+		return eventRepository.save(event);
+	}
+
 }

@@ -1,10 +1,13 @@
 package net.deile.controller;
 
+import java.sql.SQLException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,12 +27,12 @@ public class SignupController {
 	UserDetailServiceImpl userDetailServiceImpl;
 
 	@GetMapping("")
-	public String singuptio(Model model) {
+	public String singuptio(@ModelAttribute SigninForm form, Model model) {
 		return "signup";
 	}
 
 	@PostMapping("")
-	public String singupForm(@ModelAttribute("signinForm") SigninForm form, Model model) {
+	public String singupForm(@ModelAttribute("signinForm") @Validated SigninForm form, Model model) {
 
 		String resultReturn = "index";
 
@@ -45,17 +48,27 @@ public class SignupController {
 		user.setUser_id("");
 		user.setUser_name("");
 
-		if (user.getEmail().equals("") || user.getPassword().equals("")) {
+		if (user.getEmail() == null || user.getPassword() == null || user.getEmail().trim().isEmpty()
+				|| user.getPassword().trim().isEmpty()) {
 			logger.warn("email or password is empty");
+			// 必須項目が入力されていないエラー
 			resultReturn = "index";
 		}
 
-		if (!user.getEmail().equals("") && !user.getPassword().equals("")) {
+		if (!user.getEmail().trim().equals("") && !user.getPassword().trim().equals("")) {
 			// userテーブルへ登録
-			if (userDetailServiceImpl.signUpUser(user)) {
-				resultReturn = "signupconfirm";
-			} else {
-				resultReturn = "signup";
+			try {
+				if (userDetailServiceImpl.signUpUser(user)) {
+					// 成功
+					resultReturn = "signupconfirm";
+				} else {
+					// すでに登録されているか、登録の失敗
+					resultReturn = "signup";
+				}
+			} catch (SQLException e) {
+				// 更新に失敗した場合。
+				e.printStackTrace();
+				resultReturn = "exception";
 			}
 		}
 
