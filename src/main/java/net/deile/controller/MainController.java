@@ -18,10 +18,8 @@ public class MainController {
 
 	Logger logger = LoggerFactory.getLogger(Thread.currentThread().getStackTrace()[1].getClassName());
 
-
-	@GetMapping("")
+	@GetMapping({ "", "index" })
 	public String index(Model model) {
-
 		return "index";
 	}
 
@@ -39,6 +37,8 @@ public class MainController {
 	public String showDashboard(@AuthenticationPrincipal User user, Model model) {
 
 		// 参加する予定のカレンダー
+
+
 		// 参加する予定のイベントの一覧
 
 		return "dashboard";

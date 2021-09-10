@@ -1,12 +1,13 @@
 package net.deile.entity;
 
-import java.sql.Date;
+import javax.persistence.Table;
 
 import org.springframework.data.annotation.Id;
 
 import lombok.Data;
 
 @Data
+@Table(name = "event")
 public class Event {
 
 	@Id
@@ -25,8 +26,6 @@ public class Event {
 	private Integer max_participant;
 
 	private Integer participant;
-
-	private String tentative_participant;
 
 	private Boolean public_flag;
 

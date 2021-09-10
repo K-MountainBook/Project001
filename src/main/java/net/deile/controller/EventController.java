@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import net.deile.entity.Event;
 import net.deile.form.EventForm;
 import net.deile.service.EventServiceImpl;
+import net.deile.service.ParticipantServiceImpl;
 
 @Controller
 @RequestMapping("/event")
@@ -22,7 +23,10 @@ public class EventController {
 	Logger logger = LoggerFactory.getLogger(Thread.currentThread().getStackTrace()[1].getClassName());
 
 	@Autowired
-	EventServiceImpl eventserviceimpl;
+	EventServiceImpl eventServiceImpl;
+
+	@Autowired
+	ParticipantServiceImpl participantServiceImpl;
 
 	@ModelAttribute
 	EventForm eventform() {
@@ -55,10 +59,9 @@ public class EventController {
 		event.setToDate(form.getToDate() + form.getToTime());
 		event.setParticipant(0);
 		event.setMax_participant(form.getMax_participant());
-		event.setTentative_participant("");
 		event.setPublic_flag(form.getPublic_flag());
 
-		eventserviceimpl.save(null);
+		eventServiceImpl.save(null);
 		return "event_list";
 	}
 

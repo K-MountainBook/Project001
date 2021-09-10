@@ -62,7 +62,7 @@ public class SignupController {
 					// 成功
 					resultReturn = "signupconfirm";
 				} else {
-					// すでに登録されているか、登録の失敗
+					// すでに登録されている場合
 					resultReturn = "signup";
 				}
 			} catch (SQLException e) {
