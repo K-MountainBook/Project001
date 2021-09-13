@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,12 +15,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import net.deile.entity.Event;
 import net.deile.form.EventForm;
+import net.deile.repository.EventRepository;
 import net.deile.service.EventServiceImpl;
 import net.deile.service.ParticipantServiceImpl;
 
@@ -35,6 +38,9 @@ public class EventController {
 	@Autowired
 	ParticipantServiceImpl participantServiceImpl;
 
+	@Autowired
+	EventRepository eventRepository;
+
 	@ModelAttribute
 	EventForm eventform() {
 		return new EventForm();
@@ -42,13 +48,16 @@ public class EventController {
 
 	@GetMapping("")
 	public String event() {
-
-		return "event_list";
+		String template = "event_list";
+		// 公開可のイベントを表示（抽出アルゴリズムを考える）
+		return template;
 	}
 
 	@GetMapping("/make")
 	public String make(Model model) {
-		return "event_make";
+		String template = "event_make";
+		// イベント作成画面へ遷移
+		return template;
 
 	}
 
@@ -56,15 +65,14 @@ public class EventController {
 	public String makePost(EventForm form, Model model) {
 		logger.info("Run makePost");
 		// イベントの登録処理とバリデーション
+		String template = "redirect:/event/event_list";
+		;
 		Event event = new Event();
 		try {
 			final DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			Timestamp fromDate = new Timestamp(
 					df.parse(form.getFromDate() + " " + form.getFromTime() + ":00").getTime());
 			Timestamp toDate = new Timestamp(df.parse(form.getToDate() + " " + form.getToTime() + ":00").getTime());
-
-			System.out.println(fromDate);
-			System.out.println(toDate);
 
 			// バリデーション
 
@@ -81,40 +89,56 @@ public class EventController {
 			event.setOwner("");
 
 			eventServiceImpl.save(event);
-			return "redirect:/event/event_list";
 
 		} catch (ParseException e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
-			return "exception";
+			template = "exception";
+
 		}
+
+		return template;
+
 	}
 
 	@GetMapping("/event_list")
 	public String event_list(Model model) {
 		logger.info("Run eventlist");
+		String template = "event_list";
 		// TODO ログインユーザがオーナーのイベントを検索
 		List<Event> ownerEvent = new ArrayList<>();
 		ownerEvent = eventServiceImpl.findAllByemail("");
 
 		model.addAttribute("ownerEvent", ownerEvent);
 
-		return "event_list";
+		return template;
 	}
 
-	@GetMapping("/search")
-	public String search(Model model) {
-		return "event_search";
+	@PostMapping("/search")
+	public String search(@RequestParam(name = "word") String word, Model model) {
+		String template = "event_search";
+		return template;
 	}
 
-	@GetMapping("/details")
-	public String eventDetails(Model model) {
-		return "event_details";
+	@GetMapping("/details/{event_id}")
+	public String eventDetails(@PathVariable(name = "eventid", required = true) Long event_id, Model model) {
+		logger.info("view event details");
+
+		String template = "event_details";
+		// イベント詳細画面に遷移
+		Optional<Event> eventdetails = eventRepository.findById(event_id);
+		if (eventdetails.isEmpty()) {
+			// イベントデータが取得できない場合
+			logger.warn("Event Not Found. event_id:" + event_id);
+			template = "event_notfound";
+		}
+		return template;
 	}
 
-	@GetMapping("/join")
-	public String eventjoin(@RequestParam String event_id, Model model) {
-		return "event_join_confirm";
+	@GetMapping("/join/{event_id}")
+	public String eventjoin(@PathVariable(name = "eventid", required = true) Long event_id, Model model) {
+		String template = "event_join_confirm";
+		return template;
 	}
 
 }

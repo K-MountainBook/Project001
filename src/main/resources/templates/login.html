@@ -1,20 +1,27 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	lang="ja">
 <head th:replace="header :: common_header(title = 'Log in')">
 </head>
 <body>
 	<div th:replace="header :: header"></div>
-	<form th:action="@{/login}" method="post">
-		<p>
-			<input type="text" id="email" name="email" class="form-control"
-				placeholder="E-Mail Address">
-		</p>
-		<p>
-			<input type="password" id="pswd" name="pswd" class="form-control"
-				placeholder="Password">
-		</p>
-		<button class="btn btn-primary" type="submit">ログイン</button>
-	</form>
+	<div sec:authorize="isAnonymous()">
+		<form th:action="@{/login}" method="post">
+			<p>
+				<input type="text" id="email" name="email" class="form-control"
+					placeholder="E-Mail Address">
+			</p>
+			<p>
+				<input type="password" id="pswd" name="pswd" class="form-control"
+					placeholder="Password">
+			</p>
+			<button class="btn btn-primary" type="submit">ログイン</button>
+		</form>
+	</div>
+	<div sec:authorize="isAuthenticated()">
+		ログイン済みです。<br> <a th:href="@{/dashboard}">ダッシュボードへ</a>
+	</div>
 	<div th:replace="footer :: footer"></div>
 </body>
 </html>

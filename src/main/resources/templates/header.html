@@ -25,6 +25,7 @@
 			</div>
 			<div sec:authorize="isAuthenticated()">
 				<div>
+					<span sec:authentication="principal.email"></span>
 					<span sec:authentication="principal.user_name"></span>さんでログイン中
 				</div>
 				<form th:action="@{/logout}" method="post">

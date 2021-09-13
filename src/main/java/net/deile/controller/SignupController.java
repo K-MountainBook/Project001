@@ -1,10 +1,12 @@
 package net.deile.controller;
 
+import java.security.Principal;
 import java.sql.SQLException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
@@ -28,13 +30,21 @@ public class SignupController {
 
 	@GetMapping("")
 	public String singuptio(@ModelAttribute SigninForm form, Model model) {
-		return "signup";
+		String template = "signup";
+		return template;
 	}
 
 	@PostMapping("")
-	public String singupForm(@ModelAttribute("signinForm") @Validated SigninForm form, Model model) {
+	public String singupForm(@ModelAttribute("signinForm") @Validated SigninForm form, Model model,
+			Principal principal) {
 
-		String resultReturn = "index";
+		String template = "index";
+
+		if (principal == null) {
+
+		} else {
+			// ログイン済み
+		}
 
 		User user = new User();
 		// emailアドレスとパスワードを検証
@@ -52,7 +62,7 @@ public class SignupController {
 				|| user.getPassword().trim().isEmpty()) {
 			logger.warn("email or password is empty");
 			// 必須項目が入力されていないエラー
-			resultReturn = "index";
+			template = "index";
 		}
 
 		if (!user.getEmail().trim().equals("") && !user.getPassword().trim().equals("")) {
@@ -60,24 +70,25 @@ public class SignupController {
 			try {
 				if (userDetailServiceImpl.signUpUser(user)) {
 					// 成功
-					resultReturn = "signupconfirm";
+					template = "signupconfirm";
 				} else {
 					// すでに登録されている場合
-					resultReturn = "signup";
+					template = "signup";
 				}
 			} catch (SQLException e) {
 				// 更新に失敗した場合。
 				e.printStackTrace();
-				resultReturn = "exception";
+				template = "exception";
 			}
 		}
 
-		return resultReturn;
+		return template;
 	}
 
 	@GetMapping("signupconfirm")
 	public String signupConfirm(Model model) {
-		return "signupconfirm";
+		String template = "signupconfirm";
+		return template;
 	}
 
 }

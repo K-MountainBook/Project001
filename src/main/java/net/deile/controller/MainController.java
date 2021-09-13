@@ -20,28 +20,18 @@ public class MainController {
 
 	@GetMapping({ "", "index" })
 	public String index(Model model) {
-		return "index";
-	}
-
-	@GetMapping("profile")
-	public String profileview(Model model) {
-		return "profile";
-	}
-
-	@GetMapping("login")
-	public String loginGet(Model model) {
-		return "login";
+		String template = "index";
+		return template;
 	}
 
 	@GetMapping("dashboard")
 	public String showDashboard(@AuthenticationPrincipal User user, Model model) {
-
+		String template = "dashboard";
 		// 参加する予定のカレンダー
-
 
 		// 参加する予定のイベントの一覧
 
-		return "dashboard";
+		return template;
 
 	}
 }
