@@ -2,6 +2,7 @@ package net.deile.controller;
 
 import java.security.Principal;
 import java.sql.SQLException;
+import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,8 +56,8 @@ public class SignupController {
 		user.setGroup_id("");
 		user.setHomepage("");
 		user.setTwitter("");
-		user.setUser_id("");
 		user.setUser_name("");
+		user.setUUID(UUID.randomUUID().toString());
 
 		if (user.getEmail() == null || user.getPassword() == null || user.getEmail().trim().isEmpty()
 				|| user.getPassword().trim().isEmpty()) {

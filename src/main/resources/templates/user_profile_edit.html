@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" lang="ja">
+<head th:replace="header :: common_header(title = 'User Profile')">
+</head>
+<body>
+    <div th:replace="header :: header"></div>
+    <form th:action="@{/user/profile}" method="post" th:object="${userProfileForm}">
+        <p>
+            <input type="text" th:field="*{email}" class="form-control" placeholder="E-Mail Address">
+        </p>
+        <p>
+            <input type="text" th:field="*{user_name}" class="form-control" placeholder="User Name">
+        </p>
+        <button class="btn btn-primary" type="submit">ログイン</button>
+    </form>
+    <div th:replace="footer :: footer"></div>
+
+</body>
+</html>

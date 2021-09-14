@@ -1,22 +1,25 @@
-package net.deile.entity;
+package net.deile.form;
 
 import java.sql.Date;
-import java.time.LocalDateTime;
 
-import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 
 import org.springframework.data.annotation.Id;
 
 import lombok.Data;
 
 @Data
-@Table(name = "user")
-public class User {
+public class UserProfileForm {
 
-	@Id
+	@Email
+	@NotBlank
 	private String email;
 
 	private String user_name;
+
+	@NotBlank
+	private long user_id;
 
 	private String password;
 
@@ -32,10 +35,6 @@ public class User {
 
 	private boolean enable;
 
-	private LocalDateTime registered_date;
-
-	private LocalDateTime updated_date;
-
-	private String UUID;
+	private Date registered_date;
 
 }

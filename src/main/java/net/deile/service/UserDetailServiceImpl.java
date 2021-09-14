@@ -3,6 +3,7 @@ package net.deile.service;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,7 +45,18 @@ public class UserDetailServiceImpl implements UserDetailService {
 			// データ登録処理
 			String email = user.getEmail();
 			String pswd = passwordEncoder().encode(user.getPassword());
-			int insertCnt = userRepository.insert(email, pswd);
+			String uuid = user.getUUID();
+
+			// 万が一を考えてUUIDの重複チェックを行う
+			while (!userRepository.checkUUID(uuid).isEmpty()) {
+				// uuidが重複していた場合、再度生成する。
+				logger.warn("UUID Exists. Regenarate UUID");
+				uuid = UUID.randomUUID().toString();
+			}
+
+			// データの登録を行う。
+			int insertCnt = userRepository.insert(email, pswd, user.getUUID());
+			// 登録件数が１件以外の場合例外を投げる
 			if (insertCnt != 1) {
 				throw new SQLException("ユーザのinsert処理に失敗しました。");
 			}

@@ -1,10 +1,51 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" lang="ja">
 <head th:replace="header :: common_header(title = 'User Profile')">
 </head>
 <body>
-    <div th:replace="header :: header"></div>
+    <form>
+        <div th:replace="header :: header"></div>
+        <div>
+            <label>
+                E-Mail Address
+                <input type="text" th:field="*{user.email}" class="form-control" disabled="disabled">
+            </label>
+        </div>
+        <div>
+            <label>
+                ユーザ名
+                <input type="text" th:field="*{user.user_name}" class="form-control">
+            </label>
+        </div>
+        <div>
+            <label>
+                自己紹介
+                <textarea th:field="*{user.bio}" rows="3" class="form-control"></textarea>
+            </label>
+        </div>
+        <div>
+            <label>
+                Twitter
+                <input type="text" th:field="*{user.twitter}" class="form-control">
+            </label>
+        </div>
+        <div>
+            <label>
+                FaceBook
+                <input type="text" th:field="*{user.facebook}" class="form-control">
+            </label>
+        </div>
+        <div>
+            <label>
+                ホームページ
+                <input type="text" th:field="*{user.homepage}" class="form-control">
+            </label>
+        </div>
+        <div>
+            <label>登録年月日</label>
+            <p th:text="*{user.registered_date}"></p>
+        </div>
+    </form>
     <div th:replace="footer :: footer"></div>
-
 </body>
 </html>

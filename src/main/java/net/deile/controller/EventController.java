@@ -43,6 +43,7 @@ public class EventController {
 
 	@ModelAttribute
 	EventForm eventform() {
+		// イベント作成フォームの定義
 		return new EventForm();
 	}
 
