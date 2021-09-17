@@ -67,7 +67,7 @@ public class EventController {
 		logger.info("Run makePost");
 		// イベントの登録処理とバリデーション
 		String template = "redirect:/event/event_list";
-		;
+
 		Event event = new Event();
 		try {
 			final DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

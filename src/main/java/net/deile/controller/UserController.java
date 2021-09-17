@@ -1,12 +1,12 @@
 package net.deile.controller;
 
 import java.util.List;
-
-import javax.websocket.server.PathParam;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import net.deile.entity.User;
 import net.deile.form.UserProfileForm;
@@ -30,8 +29,30 @@ public class UserController {
 	UserRepository userRepository;
 
 	@GetMapping("profile")
-	public String profileview(@ModelAttribute UserProfileForm form, Model model) {
+	public String profileview(@ModelAttribute UserProfileForm form, @AuthenticationPrincipal User userPrin,
+			Model model) {
+
 		String template = "user_profile_edit";
+		// 編集ユーザのユーザ情報を取得する。
+
+		Optional<User> userInfo = userRepository.findById(userPrin.getUUID());
+		User user;
+
+		if (userInfo.isPresent()) {
+			user = userInfo.get();
+
+			form.setEmail(user.getEmail());
+			form.setUuid(user.getUUID());
+			form.setUser_name(user.getUser_name());
+			form.setBio(user.getBio());
+			form.setTwitter(user.getTwitter());
+			form.setFacebook(user.getFacebook());
+			form.setHomepage(user.getHomepage());
+
+		} else {
+			// ユーザ情報が取得できなかった場合エラー
+		}
+
 		return template;
 	}
 
@@ -41,11 +62,11 @@ public class UserController {
 		return template;
 	}
 
-	@GetMapping("/{email}")
-	public String viewprofile(@PathVariable("email") String email, Model model) {
+	@GetMapping("/{username}")
+	public String viewprofile(@PathVariable("username") String username, Model model) {
 		String template = "user_profile";
 		// ユーザ情報を取得して、Viewへ渡す。
-		List<User> userInfo = userRepository.findByEmail(email);
+		List<User> userInfo = userRepository.findByUserName(username);
 		if (userInfo.isEmpty()) {
 			// ユーザが存在しません。
 			template = "user_notfound";

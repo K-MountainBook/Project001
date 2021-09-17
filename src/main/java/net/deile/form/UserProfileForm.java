@@ -5,8 +5,6 @@ import java.sql.Date;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
-import org.springframework.data.annotation.Id;
-
 import lombok.Data;
 
 @Data
@@ -19,7 +17,7 @@ public class UserProfileForm {
 	private String user_name;
 
 	@NotBlank
-	private long user_id;
+	private String uuid;
 
 	private String password;
 

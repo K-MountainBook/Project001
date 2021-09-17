@@ -71,6 +71,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		findUser.setEmail(user_email);
 		findUser.setPassword("");
 		findUser.setUser_name(findUser.getUser_name());
+		findUser.setUUID(findUser.getUUID());
 
 		// ロールの追加
 		Collection<GrantedAuthority> authorityList = new ArrayList<>();

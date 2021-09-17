@@ -17,6 +17,9 @@ public interface UserRepository extends CrudRepository<User, String> {
 	@Query(value = "select * from user where email = :email")
 	public List<User> findByEmail(@Param("email") String email);
 
+	@Query(value = "select * from user where user_name = :userName")
+	public List<User> findByUserName(@Param("userName") String userName);
+
 	@Transactional
 	@Modifying
 	@Query(value = "insert into user ( email, password, enable, registered_date, updated_date, UUID ) values ( :email, :password, true, NOW(), NOW(), :UUID)")
