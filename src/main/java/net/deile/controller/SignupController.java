@@ -42,44 +42,47 @@ public class SignupController {
 
 		if (principal == null) {
 
+			User user = new User();
+			// emailアドレスとパスワードを検証
+			user.setEmail(form.getEmail());
+			user.setPassword(form.getPswd());
+			user.setBio("");
+			user.setFacebook("");
+			user.setGroup_id("");
+			user.setHomepage("");
+			user.setTwitter("");
+			user.setUser_name("");
+
+			String uuid = UUID.randomUUID().toString();
+			user.setUUID(userDetailServiceImpl.checkUuid(uuid));
+
+			if (user.getEmail() == null || user.getPassword() == null || user.getEmail().trim().isEmpty()
+					|| user.getPassword().trim().isEmpty()) {
+				logger.warn("email or password is empty");
+				// 必須項目が入力されていないエラー
+				template = "signup";
+			}
+
+			if (!user.getEmail().trim().equals("") && !user.getPassword().trim().equals("")) {
+				// userテーブルへ登録
+				try {
+					if (userDetailServiceImpl.signUpUser(user)) {
+						// 成功
+						template = "signupconfirm";
+					} else {
+						// すでに登録されている場合
+						template = "signup";
+					}
+				} catch (SQLException e) {
+					// 更新に失敗した場合。
+					e.printStackTrace();
+					template = "exception";
+				}
+			}
+
 		} else {
 			// ログイン済み
-		}
-
-		User user = new User();
-		// emailアドレスとパスワードを検証
-		user.setEmail(form.getEmail());
-		user.setPassword(form.getPswd());
-		user.setBio("");
-		user.setFacebook("");
-		user.setGroup_id("");
-		user.setHomepage("");
-		user.setTwitter("");
-		user.setUser_name("");
-		user.setUUID(UUID.randomUUID().toString());
-
-		if (user.getEmail() == null || user.getPassword() == null || user.getEmail().trim().isEmpty()
-				|| user.getPassword().trim().isEmpty()) {
-			logger.warn("email or password is empty");
-			// 必須項目が入力されていないエラー
-			template = "index";
-		}
-
-		if (!user.getEmail().trim().equals("") && !user.getPassword().trim().equals("")) {
-			// userテーブルへ登録
-			try {
-				if (userDetailServiceImpl.signUpUser(user)) {
-					// 成功
-					template = "signupconfirm";
-				} else {
-					// すでに登録されている場合
-					template = "signup";
-				}
-			} catch (SQLException e) {
-				// 更新に失敗した場合。
-				e.printStackTrace();
-				template = "exception";
-			}
+			// indexへ戻す。
 		}
 
 		return template;

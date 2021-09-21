@@ -47,15 +47,8 @@ public class UserDetailServiceImpl implements UserDetailService {
 			String pswd = passwordEncoder().encode(user.getPassword());
 			String uuid = user.getUUID();
 
-			// 万が一を考えてUUIDの重複チェックを行う
-			while (!userRepository.checkUUID(uuid).isEmpty()) {
-				// uuidが重複していた場合、再度生成する。
-				logger.warn("UUID Exists. Regenarate UUID");
-				uuid = UUID.randomUUID().toString();
-			}
-
 			// データの登録を行う。
-			int insertCnt = userRepository.insert(email, pswd, user.getUUID());
+			int insertCnt = userRepository.insert(email, pswd, uuid);
 			// 登録件数が１件以外の場合例外を投げる
 			if (insertCnt != 1) {
 				throw new SQLException("ユーザのinsert処理に失敗しました。");
@@ -64,6 +57,16 @@ public class UserDetailServiceImpl implements UserDetailService {
 
 		return result;
 
+	}
+
+	public String checkUuid(String uuid) {
+		// 万が一を考えてUUIDの重複チェックを行う
+		while (!userRepository.checkUUID(uuid).isEmpty()) {
+			// uuidが重複していた場合、再度生成する。
+			logger.warn("UUID Exists. Regenarate UUID");
+			uuid = UUID.randomUUID().toString();
+		}
+		return uuid;
 	}
 
 	@Override
