@@ -8,6 +8,12 @@ import org.springframework.data.annotation.Id;
 
 import lombok.Data;
 
+/**
+ * Entity of "USER" table.
+ * 
+ * @author k_yamamoto
+ *
+ */
 @Data
 @Table(name = "user")
 public class User {

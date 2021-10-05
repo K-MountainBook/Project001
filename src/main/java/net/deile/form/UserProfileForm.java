@@ -7,6 +7,11 @@ import javax.validation.constraints.NotBlank;
 
 import lombok.Data;
 
+/**
+ * ユーザ情報登録フォーム用
+ * @author k_yamamoto
+ *
+ */
 @Data
 public class UserProfileForm {
 

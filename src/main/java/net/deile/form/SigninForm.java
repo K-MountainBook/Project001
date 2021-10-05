@@ -5,6 +5,11 @@ import javax.validation.constraints.NotBlank;
 
 import lombok.Data;
 
+/**
+ * サインアップフォーム用
+ * @author k_yamamoto
+ *
+ */
 @Data
 public class SigninForm {
 

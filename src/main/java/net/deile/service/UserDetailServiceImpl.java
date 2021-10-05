@@ -17,6 +17,12 @@ import net.deile.entity.User;
 import net.deile.repository.UserRepository;
 import net.deile.service.interfaces.UserDetailService;
 
+/**
+ * ユーザ情報サービスIFの実装
+ * 
+ * @author k_yamamoto
+ *
+ */
 @Service
 public class UserDetailServiceImpl implements UserDetailService {
 
@@ -31,6 +37,12 @@ public class UserDetailServiceImpl implements UserDetailService {
 
 	Logger logger = LoggerFactory.getLogger(Thread.currentThread().getStackTrace()[1].getClassName());
 
+	/**
+	 * ユーザのサインアップ（仮登録）
+	 * @param user 画面に入力された、Email/パスワード。生成したUUID。
+	 * @return 登録の成否（boolean)
+	 * @throws SQLException insertメソッドの戻り値が1以外
+	 */
 	public boolean signUpUser(User user) throws SQLException {
 		//
 		boolean result = true;
@@ -59,6 +71,11 @@ public class UserDetailServiceImpl implements UserDetailService {
 
 	}
 
+	/**
+	 * UUIDの重複チェック(DBの検索)
+	 * @param uuid UUID
+	 * @return 重複していた場合は再生成したUUID
+	 */
 	public String checkUuid(String uuid) {
 		// 万が一を考えてUUIDの重複チェックを行う
 		while (!userRepository.checkUUID(uuid).isEmpty()) {

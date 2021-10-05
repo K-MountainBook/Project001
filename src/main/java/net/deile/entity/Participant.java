@@ -7,6 +7,11 @@ import javax.persistence.Table;
 
 import lombok.Data;
 
+/**
+ * Entity of "Participant" table.
+ * @author k_yamamoto
+ *
+ */
 @Data
 @Table(name = "Participant")
 @IdClass(ParticipantPK.class)

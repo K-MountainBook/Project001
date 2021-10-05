@@ -21,6 +21,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import net.deile.entity.User;
 import net.deile.service.UserDetailServiceImpl;
 
+/**
+ * AuthenticationProviderの実装<br>
+ * implements of {@link AuthenticationProvider}.<br>
+ * 
+ * @author k_yamamoto
+ *
+ */
 @Configuration
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 
@@ -34,9 +41,6 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
 	}
 
-	/**
-	 * 認証/認可処理
-	 */
 	@Override
 	public Authentication authenticate(Authentication auth) throws AuthenticationException {
 

@@ -7,6 +7,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+/**
+ * "/login"配下のパスへのアクセスコントローラ
+ * 
+ * @author k_yamamoto
+ *
+ */
 @Controller
 @RequestMapping("/login")
 public class LoginController {

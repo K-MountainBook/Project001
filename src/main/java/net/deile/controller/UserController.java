@@ -19,6 +19,12 @@ import net.deile.entity.User;
 import net.deile.form.UserProfileForm;
 import net.deile.repository.UserRepository;
 
+/**
+ * "/User"配下のパスへのアクセスコントローラ
+ * 
+ * @author k_yamamoto
+ *
+ */
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -28,6 +34,14 @@ public class UserController {
 	@Autowired
 	UserRepository userRepository;
 
+	/**
+	 * /user/profileへのアクセス(Get)
+	 * 
+	 * @param form     {@link net.deile.form.UserProfileForm}
+	 * @param userPrin {@link net.deile.entity.User}
+	 * @param model    {@link org.springframework.ui.Model}
+	 * @return Template Name
+	 */
 	@GetMapping("profile")
 	public String profileview(@ModelAttribute UserProfileForm form, @AuthenticationPrincipal User userPrin,
 			Model model) {
@@ -56,12 +70,27 @@ public class UserController {
 		return template;
 	}
 
+	/**
+	 * /user/profileへのアクセス(Post)
+	 * 
+	 * @param form  {@link net.deile.form.UserProfileForm}
+	 * @param model {@link org.springframework.ui.Model}
+	 * @return Template Name
+	 */
 	@PostMapping("profile")
 	public String profileForm(@ModelAttribute(value = "userProfileForm") UserProfileForm form, Model model) {
 		String template = "user_profile_edit";
 		return template;
 	}
 
+	/**
+	 * /user/{UUID}へのアクセス(Get)<br>
+	 * {UUID}のユーザの情報を表示する。
+	 * 
+	 * @param username UUID
+	 * @param model    {@link org.springframework.ui.Model}
+	 * @return Template Name
+	 */
 	@GetMapping("/{username}")
 	public String viewprofile(@PathVariable("username") String username, Model model) {
 		String template = "user_profile";

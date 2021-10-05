@@ -19,6 +19,12 @@ import net.deile.entity.User;
 import net.deile.form.SigninForm;
 import net.deile.service.UserDetailServiceImpl;
 
+/**
+ * "/signup"配下のパスへのアクセスコントローラ
+ * 
+ * @author k_yamamoto
+ *
+ */
 @Controller
 @RequestMapping("/signup")
 public class SignupController {
@@ -28,12 +34,27 @@ public class SignupController {
 	@Autowired
 	UserDetailServiceImpl userDetailServiceImpl;
 
+	/**
+	 * サインアップページへのアクセス(Get)
+	 * 
+	 * @param form  SinginForm
+	 * @param model {@link org.springframework.ui.Model}
+	 * @return Template Name
+	 */
 	@GetMapping("")
 	public String singuptio(@ModelAttribute SigninForm form, Model model) {
 		String template = "signup";
 		return template;
 	}
 
+	/**
+	 * サインアップページへのアクセス(Post)
+	 * 
+	 * @param form      SingnForm
+	 * @param model     {@link org.springframework.ui.Model}
+	 * @param principal {@link java.security.Principal}
+	 * @return Template Name
+	 */
 	@PostMapping("")
 	public String singupForm(@ModelAttribute("signinForm") @Validated SigninForm form, Model model,
 			Principal principal) {
@@ -54,6 +75,7 @@ public class SignupController {
 			user.setUser_name("");
 
 			String uuid = UUID.randomUUID().toString();
+			// UUIDの重複チェックを一応行う
 			user.setUUID(userDetailServiceImpl.checkUuid(uuid));
 
 			if (user.getEmail() == null || user.getPassword() == null || user.getEmail().trim().isEmpty()
@@ -75,7 +97,7 @@ public class SignupController {
 					}
 				} catch (SQLException e) {
 					// 更新に失敗した場合。
-					e.printStackTrace();
+					logger.error(e.getMessage());
 					template = "exception";
 				}
 			}
@@ -88,6 +110,12 @@ public class SignupController {
 		return template;
 	}
 
+	/**
+	 * サインアップ確認画面(Get)
+	 * 
+	 * @param model {@link org.springframework.ui.Model}
+	 * @return Template Name
+	 */
 	@GetMapping("signupconfirm")
 	public String signupConfirm(Model model) {
 		String template = "signupconfirm";

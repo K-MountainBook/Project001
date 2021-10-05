@@ -11,6 +11,12 @@ import net.deile.entity.ParticipantPK;
 @Repository
 public interface ParticipantRepository extends CrudRepository<Participant, ParticipantPK> {
 
+	/**
+	 * Participantテーブルの一意データを検索する。
+	 * @param event_id
+	 * @param email
+	 * @return Participant table entity.
+	 */
 	@Query("select p.* from participant p where p.event_id = :event_id and p.email = :email")
 	Participant findByParticipantPrimaryKey(@Param("event_id") long event_id, @Param("email") String email);
 

@@ -1,6 +1,7 @@
 package net.deile.controller;
 
 import java.sql.Timestamp;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -26,6 +27,12 @@ import net.deile.repository.EventRepository;
 import net.deile.service.EventServiceImpl;
 import net.deile.service.ParticipantServiceImpl;
 
+/**
+ * "/event"配下のパスへのアクセスコントローラ
+ * 
+ * @author k_yamamoto
+ *
+ */
 @Controller
 @RequestMapping("/event")
 public class EventController {
@@ -47,6 +54,11 @@ public class EventController {
 		return new EventForm();
 	}
 
+	/**
+	 * /eventのトップページを表示する（公開されているイベントのある程度の一覧を表示）(Get)
+	 * 
+	 * @return Template Name
+	 */
 	@GetMapping("")
 	public String event() {
 		String template = "event_list";
@@ -54,6 +66,12 @@ public class EventController {
 		return template;
 	}
 
+	/**
+	 * イベント作成画面を表示(Get)
+	 * 
+	 * @param model {@link org.springframework.ui.Model}
+	 * @return Template Name
+	 */
 	@GetMapping("/make")
 	public String make(Model model) {
 		String template = "event_make";
@@ -61,6 +79,14 @@ public class EventController {
 		return template;
 
 	}
+
+	/**
+	 * イベント作成画面を表示(登録)(Post)
+	 * 
+	 * @param form  {@link net.deile.form.EventForm}
+	 * @param model {@link org.springframework.ui.Model}
+	 * @return Template Name
+	 */
 
 	@PostMapping("/make")
 	public String makePost(EventForm form, Model model) {
@@ -92,8 +118,7 @@ public class EventController {
 			eventServiceImpl.save(event);
 
 		} catch (ParseException e) {
-			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
+			logger.error(e.getMessage());
 			template = "exception";
 
 		}
@@ -102,6 +127,12 @@ public class EventController {
 
 	}
 
+	/**
+	 * ログインユーザがオーナーのイベント一覧の表示(Get)
+	 * 
+	 * @param model {@link org.springframework.ui.Model}
+	 * @return Template Name
+	 */
 	@GetMapping("/event_list")
 	public String event_list(Model model) {
 		logger.info("Run eventlist");

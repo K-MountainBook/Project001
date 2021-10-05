@@ -2,6 +2,11 @@ package net.deile.form;
 
 import lombok.Data;
 
+/**
+ * イベント登録フォーム用
+ * @author k_yamamoto
+ *
+ */
 @Data
 public class EventForm {
 

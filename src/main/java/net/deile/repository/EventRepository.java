@@ -12,6 +12,12 @@ import net.deile.entity.Event;
 @Repository
 public interface EventRepository extends CrudRepository<Event, Long> {
 
+	/**
+	 * Get Event for owner
+	 * 
+	 * @param owner user identity address.
+	 * @return List<{@link net.deile.entity.Event}>.
+	 */
 	@Query("select e.* from event e where e.owner = :email")
 	List<Event> findallByEmail(@Param("email") String owner);
 

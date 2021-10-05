@@ -10,6 +10,13 @@ import org.springframework.data.annotation.Id;
 
 import lombok.Data;
 
+/**
+ * 
+ * Entity of "Event" table.
+ * 
+ * @author k_yamamoto
+ *
+ */
 @Data
 @Table(name = "event")
 public class Event {

@@ -7,6 +7,11 @@ import javax.persistence.Embeddable;
 
 import lombok.Data;
 
+/**
+ * Entity of "Participant" table Primary Key.
+ * @author k_yamamoto
+ *
+ */
 @Data
 @Embeddable
 public class ParticipantPK implements Serializable {
