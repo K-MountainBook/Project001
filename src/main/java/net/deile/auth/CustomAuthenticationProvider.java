@@ -20,6 +20,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import net.deile.entity.User;
 import net.deile.service.UserDetailServiceImpl;
+import net.deile.service.interfaces.UserDetailService;
 
 /**
  * AuthenticationProviderの実装<br>
@@ -32,7 +33,7 @@ import net.deile.service.UserDetailServiceImpl;
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 
 	@Autowired
-	UserDetailServiceImpl userDetailService;
+	UserDetailService userDetailService;
 
 	Logger logger = LoggerFactory.getLogger(Thread.currentThread().getStackTrace()[1].getClassName());
 
