@@ -59,6 +59,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		// アクセスコントロールの設定
+		// 全てのユーザに全てのアクセスを許可
 		http.authorizeRequests().anyRequest().permitAll();
 		// ログイン画面の設定
 		http.formLogin().loginPage("/login").defaultSuccessUrl("/dashboard").failureUrl("/login?error")
