@@ -80,7 +80,7 @@ public class UserDetailServiceImpl implements UserDetailService {
 		// 万が一を考えてUUIDの重複チェックを行う
 		while (!userRepository.checkUUID(uuid).isEmpty()) {
 			// uuidが重複していた場合、再度生成する。
-			logger.warn("UUID Exists. Regenarate UUID");
+			logger.warn("UUID Exists. Re generate UUID");
 			uuid = UUID.randomUUID().toString();
 		}
 		return uuid;
