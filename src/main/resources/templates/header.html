@@ -4,6 +4,8 @@
 	lang="ja">
 <head th:fragment="common_header">
 <meta charset="UTF-8">
+<!-- sznitize.css-->
+<link rel="stylesheet" th:href="@{/css/sanitize.css}">
 <!-- Bootstrap-->
 <link rel="stylesheet"
 	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
@@ -18,21 +20,24 @@
 <body lang="ja">
 	<div th:fragment="header">
 		<header>
-			<a th:href="@{/}"> <img th:src="@{/img/logo.png}" class="logo">
-			</a>
-			<div sec:authorize="isAnonymous()">
-				<a th:href="@{/login}">Login</a> <a th:href="@{/signup}">Signup</a>
-			</div>
-			<div sec:authorize="isAuthenticated()">
-				<div>
-					<span sec:authentication="principal.email"></span>
-					<span sec:authentication="principal.user_name"></span>さんでログイン中
+			<nav class="navbar navbar-expand-lg">
+				<div class="container-fluid">
+					<a th:href="@{/}" class="navbar-brand">
+						<img style="width: 200px; height: 100px;" th:src="@{/img/logo.png}" class="logo">
+					</a>
+					<div sec:authorize="isAnonymous()" class="text-right">
+						<a th:href="@{/login}" class="navbar-item" style="margin-left:20px;">Login</a>
+						<a th:href="@{/signup}" class="navbar-item" style="margin-left:20px;">Signup</a>
+					</div>
+					<div sec:authorize="isAuthenticated()">
+						<form class="d-flex" th:action="@{/logout}" name="logout" method="POST">
+							<span class="navbar-item" sec:authentication="principal.user_name" style="margin-left:20px;"></span>さんでログイン中
+							<a th:href="@{/event/make}" class="navbar-item" style="margin-left:20px;">Make Event</a>
+							<a href="javascript:logout.submit()" style="margin-left:20px;">Logout</a>
+						</form>
+					</div>
 				</div>
-				<form th:action="@{/logout}" method="post">
-					<button class="btn btn-primary" type="submit">Logout</button>
-				</form>
-			</div>
-			<a th:href="@{/event/make}">Make Event</a>
+			</nav>
 		</header>
 		<hr>
 	</div>

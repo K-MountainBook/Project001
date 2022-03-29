@@ -1,6 +1,11 @@
 @charset "UTF-8";
 
-img.logo {
-	padding-left: 1rem;
-	padding-top: 1rem;
+nav {
+	list-style: none;
+	overflow: hidden;
+}
+
+nav ul li {
+	width: 33%;
+	text-align: right;
 }

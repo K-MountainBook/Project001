@@ -39,6 +39,7 @@ public class UserDetailServiceImpl implements UserDetailService {
 
 	/**
 	 * ユーザのサインアップ（仮登録）
+	 * 
 	 * @param user 画面に入力された、Email/パスワード。生成したUUID。
 	 * @return 登録の成否（boolean)
 	 * @throws SQLException insertメソッドの戻り値が1以外
@@ -73,6 +74,7 @@ public class UserDetailServiceImpl implements UserDetailService {
 
 	/**
 	 * UUIDの重複チェック(DBの検索)
+	 * 
 	 * @param uuid UUID
 	 * @return 重複していた場合は再生成したUUID
 	 */
