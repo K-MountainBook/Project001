@@ -12,9 +12,8 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+// import org.springframework.security.core.Authentication;
+// import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +24,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import net.deile.entity.Event;
-import net.deile.entity.User;
 import net.deile.form.EventForm;
 import net.deile.repository.EventRepository;
 import net.deile.service.EventServiceImpl;
@@ -79,8 +77,8 @@ public class EventController {
 	@GetMapping("/make")
 	public String make(Model model) {
 		String template = "event_make";
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		//		System.out.println(((User) auth.getPrincipal()).getEmail());
+		// Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		// System.out.println(((User) auth.getPrincipal()).getEmail());
 		// イベント作成画面へ遷移
 		return template;
 	}

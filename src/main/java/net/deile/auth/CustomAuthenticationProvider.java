@@ -19,7 +19,7 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import net.deile.entity.User;
-import net.deile.service.UserDetailServiceImpl;
+// import net.deile.service.UserDetailServiceImpl;
 import net.deile.service.interfaces.UserDetailService;
 
 /**

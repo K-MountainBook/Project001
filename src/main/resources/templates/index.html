@@ -1,10 +1,23 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="ja">
+
 <head th:replace="header :: common_header(title = 'Dashboard')">
 </head>
+
 <body>
 	<div th:replace="header :: header"></div>
-	index
+	<div class="container-fluid">
+		<p>
+			<a href="https://github.com/K-MountainBook/MinecraftDeileServerMods">Mod等の要件(GitHub)</a>
+		</p>
+		<p>
+			<a th:href="@{/mcmap}">世界地図</a>
+		</p>
+		<p>
+			連絡先:<a href="https://twitter.com/deile666">@deile666</a>
+		</p>
+	</div>
 	<div th:replace="footer :: footer"></div>
 </body>
+
 </html>

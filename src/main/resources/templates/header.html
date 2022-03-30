@@ -20,20 +20,31 @@
 <body lang="ja">
 	<div th:fragment="header">
 		<header>
+			<div class="text-center">
+				<a th:href="@{/}" class="navbar-brand"> <img
+					style="width: 500px; margin-top: 20px;"
+					th:src="@{/img/minecraft_cp.svg}" class="logo">
+				</a>
+			</div>
 			<nav class="navbar navbar-expand-lg">
 				<div class="container-fluid">
-					<a th:href="@{/}" class="navbar-brand">
-						<img style="width: 200px; height: 100px;" th:src="@{/img/logo.png}" class="logo">
-					</a>
+
 					<div sec:authorize="isAnonymous()" class="text-right">
-						<a th:href="@{/login}" class="navbar-item" style="margin-left:20px;">Login</a>
-						<a th:href="@{/signup}" class="navbar-item" style="margin-left:20px;">Signup</a>
+						<!--/* -->
+						<a th:href="@{/login}" class="navbar-item"
+							style="margin-left: 20px;">Login</a> <a th:href="@{/signup}"
+							class="navbar-item" style="margin-left: 20px;">Signup</a>
+						<!-- */-->
 					</div>
 					<div sec:authorize="isAuthenticated()">
-						<form class="d-flex" th:action="@{/logout}" name="logout" method="POST">
-							<span class="navbar-item" sec:authentication="principal.user_name" style="margin-left:20px;"></span>さんでログイン中
-							<a th:href="@{/event/make}" class="navbar-item" style="margin-left:20px;">Make Event</a>
-							<a href="javascript:logout.submit()" style="margin-left:20px;">Logout</a>
+						<form class="d-flex" th:action="@{/logout}" name="logout"
+							method="POST">
+							<span class="navbar-item"
+								sec:authentication="principal.user_name"
+								style="margin-left: 20px;"></span>さんでログイン中 <a
+								th:href="@{/event/make}" class="navbar-item"
+								style="margin-left: 20px;">Make Event</a> <a
+								href="javascript:logout.submit()" style="margin-left: 20px;">Logout</a>
 						</form>
 					</div>
 				</div>
