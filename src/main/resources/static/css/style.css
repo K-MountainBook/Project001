@@ -1,11 +1,24 @@
 @charset "UTF-8";
 
-nav {
-	list-style: none;
-	overflow: hidden;
+@import
+	url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css")
+	;
+
+@import url("/css/sanitize.css");
+
+h1 {
+	margin: 0.3em 0;
 }
 
-nav ul li {
-	width: 33%;
-	text-align: right;
+a {
+	color: #363636;
+}
+
+ul {
+	list-style: none;
+	padding: 0;
+}
+
+ul li {
+	margin-top: 5px;
 }
