@@ -13,10 +13,12 @@ spring:
 #    hibernate:
 #      ddl-auto: none
 
-logging:  file:
+logging:
+  file:
     name: logs/spring-boot.log
   level:
     org:
       springframework:
         jdbc:
           core : TRACE
+          
