@@ -1,0 +1,24 @@
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url:  jdbc:mysql://localhost:3306/test
+    username: root
+    password: rootpassword
+    
+  messages:
+    fallback-to-system-locale: false
+#  jpa:
+#    show-sql: true
+#    hibernate:
+#      ddl-auto: none
+
+logging:
+  file:
+    name: logs/spring-boot.log
+  level:
+    org:
+      springframework:
+        jdbc:
+          core : TRACE
+          

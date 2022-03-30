@@ -21,7 +21,7 @@ import net.deile.repository.UserRepository;
 
 /**
  * "/User"配下のパスへのアクセスコントローラ
- * 
+ *
  * @author k_yamamoto
  *
  */
@@ -36,7 +36,7 @@ public class UserController {
 
 	/**
 	 * /user/profileへのアクセス(Get)
-	 * 
+	 *
 	 * @param form     {@link net.deile.form.UserProfileForm}
 	 * @param userPrin {@link net.deile.entity.User}
 	 * @param model    {@link org.springframework.ui.Model}
@@ -72,7 +72,7 @@ public class UserController {
 
 	/**
 	 * /user/profileへのアクセス(Post)
-	 * 
+	 *
 	 * @param form  {@link net.deile.form.UserProfileForm}
 	 * @param model {@link org.springframework.ui.Model}
 	 * @return Template Name
@@ -86,7 +86,7 @@ public class UserController {
 	/**
 	 * /user/{UUID}へのアクセス(Get)<br>
 	 * {UUID}のユーザの情報を表示する。
-	 * 
+	 *
 	 * @param username UUID
 	 * @param model    {@link org.springframework.ui.Model}
 	 * @return Template Name
