@@ -27,9 +27,7 @@ public class EventServiceImpl implements EventService {
 		return eventRepository.save(event);
 	}
 
-	public List<Event> findAllByemail(String email) {
-		// TODO 自動生成されたメソッド・スタブ
+	public List<Event> findAllByEmail(String email) {
 		return eventRepository.findallByEmail(email);
 	}
-
 }

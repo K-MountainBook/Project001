@@ -142,7 +142,7 @@ public class EventController {
 		String template = "event_list";
 		// TODO ログインユーザがオーナーのイベントを検索
 		List<Event> ownerEvent = new ArrayList<>();
-		ownerEvent = eventServiceImpl.findAllByemail("");
+		ownerEvent = eventServiceImpl.findAllByEmail("");
 
 		model.addAttribute("ownerEvent", ownerEvent);
 
