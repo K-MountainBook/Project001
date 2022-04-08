@@ -19,6 +19,7 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import net.deile.entity.User;
+import net.deile.service.UserDetailServiceImpl;
 // import net.deile.service.UserDetailServiceImpl;
 import net.deile.service.interfaces.UserDetailService;
 
@@ -33,7 +34,7 @@ import net.deile.service.interfaces.UserDetailService;
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 
 	@Autowired
-	UserDetailService userDetailService;
+	UserDetailServiceImpl userDetailService;
 
 	Logger logger = LoggerFactory.getLogger(Thread.currentThread().getStackTrace()[1].getClassName());
 
