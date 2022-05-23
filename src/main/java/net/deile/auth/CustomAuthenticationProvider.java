@@ -7,6 +7,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -21,7 +22,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import net.deile.entity.User;
 import net.deile.service.UserDetailServiceImpl;
 // import net.deile.service.UserDetailServiceImpl;
-import net.deile.service.interfaces.UserDetailService;
+//import net.deile.service.interfaces.UserDetailService;
 
 /**
  * AuthenticationProviderの実装<br>
@@ -36,12 +37,10 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 	@Autowired
 	UserDetailServiceImpl userDetailService;
 
+	@Autowired
+	PasswordEncoder passwordEncoder;
+
 	Logger logger = LoggerFactory.getLogger(Thread.currentThread().getStackTrace()[1].getClassName());
-
-	public PasswordEncoder passwordEncoder() {
-		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
-
-	}
 
 	@Override
 	public Authentication authenticate(Authentication auth) throws AuthenticationException {
@@ -64,7 +63,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		}
 
 		// パスワードの整合性チェック
-		if (passwordEncoder().matches(password, findUser.getPassword())) {
+		if (passwordEncoder.matches(password, findUser.getPassword())) {
 			// パスワード一致
 			logger.info("Login success : " + user_email);
 		} else {

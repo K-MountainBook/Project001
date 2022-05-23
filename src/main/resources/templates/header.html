@@ -7,8 +7,11 @@
 <meta name="robots" content="noindex">
 <meta name="robots" content="nofollow">
 <!-- Bootstrap-->
-<link rel="stylesheet"
-	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
 <!-- My Style Sheet-->
 <link rel="stylesheet" th:href="@{/css/style.css}">
 <title th:text="${title}"></title>
@@ -17,37 +20,38 @@
 <body lang="ja">
 	<div th:fragment="header">
 		<header>
-			<div class="text-center">
-				<a th:href="@{/}" class="navbar-brand"> <img
-					style="width: 500px; margin-top: 20px;"
-					th:src="@{/img/minecraft_cp.svg}" class="logo">
-				</a>
-			</div>
-			<nav class="navbar navbar-expand-lg">
-				<div class="container-fluid">
-
-					<div sec:authorize="isAnonymous()" class="text-right">
-						<!--/* -->
-						<a th:href="@{/login}" class="navbar-item"
-							style="margin-left: 20px;">Login</a> <a th:href="@{/signup}"
-							class="navbar-item" style="margin-left: 20px;">Signup</a>
-						<!-- */-->
+			<div class="container">
+				<div class="row">
+					<div class="text-center">
+						<a th:href="@{/}" class="navbar-brand"> <img
+							style="width: 500px; margin-top: 20px;"
+							th:src="@{/img/minecraft_cp.svg}" class="logo">
+						</a>
 					</div>
-					<div sec:authorize="isAuthenticated()">
-						<form class="d-flex" th:action="@{/logout}" name="logout"
-							method="POST">
-							<span class="navbar-item"
-								sec:authentication="principal.user_name"
-								style="margin-left: 20px;"></span>さんでログイン中 <a
-								th:href="@{/event/make}" class="navbar-item"
-								style="margin-left: 20px;">Make Event</a> <a
-								href="javascript:logout.submit()" style="margin-left: 20px;">Logout</a>
-						</form>
-					</div>
+					<!-- ログイン関連 -->
+					<nav class="navbar navbar-expand-lg">
+						<div sec:authorize="isAnonymous()" class="text-right">
+							<!--/* -->
+							<a th:href="@{/login}" class="navbar-item"
+								style="margin-left: 20px;">Login</a> <a th:href="@{/signup}"
+								class="navbar-item" style="margin-left: 20px;">Signup</a>
+							<!-- */-->
+						</div>
+						<div sec:authorize="isAuthenticated()">
+							<form class="d-flex" th:action="@{/logout}" name="logout"
+								method="POST">
+								<span class="navbar-item"
+									sec:authentication="principal.user_name"
+									style="margin-left: 20px;"></span>さんでログイン中 <a
+									th:href="@{/event/make}" class="navbar-item"
+									style="margin-left: 20px;">Make Event</a> <a
+									href="javascript:logout.submit()" style="margin-left: 20px;">Logout</a>
+							</form>
+						</div>
+					</nav>
 				</div>
-			</nav>
+			</div>
 		</header>
-		<hr>
 	</div>
 </body>
 

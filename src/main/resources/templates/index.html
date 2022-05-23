@@ -6,19 +6,27 @@
 
 <body>
 	<div th:replace="header :: header"></div>
-	<div class="container-fluid">
-	</div>
-	<div class="row justify-content-center">
-		<div class="col-lg-6 col-md-8 col-sm-8 col-xs-auto">
-			<h1>Contents</h1>
-			<ul>
-				<li><i class="bi bi-pci-card"></i><a
-						href="https://github.com/K-MountainBook/MinecraftDeileServerMods">Mod等の要件(GitHub)</a>
-				</li>
-				<li><i class="bi bi-map"></i><a th:href="@{/mcmap}">世界地図</a></li>
-			</ul>
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-md-4" style="text-align: center;">
+				<h1>Contents</h1>
+			</div>
 		</div>
-	</div>
+
+		<div class="row justify-content-center">
+			<div class="col-md-4 bannerBlock">
+				<a href="https://github.com/K-MountainBook/MinecraftDeileServerMods">
+					<img th:src="@{/img/mod_banner.png}"> <span><i
+						class="bi bi-minecart-loaded"></i><br>RequireMod<br>(GitHub)</span>
+				</a>
+			</div>
+			<div class="col-md-4 bannerBlock">
+				<a th:href="@{/mcmap}"> <img th:src="@{/img/map_banner.png}">
+					<span> <i class="bi bi-map"></i><br>World Map
+				</span>
+				</a>
+			</div>
+		</div>
 	</div>
 	<div th:replace="footer :: footer"></div>
 </body>
