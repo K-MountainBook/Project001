@@ -1,0 +1,12 @@
+# 環境変数でSPRING_PROFILES_ACTIVE=application.ymlのsuffix
+
+spring:
+  thymeleaf:
+    mode: HTML
+    cache: false
+  devtools:
+    remote:
+      restart:
+        enabled: true
+    livereload:
+      enabled: true

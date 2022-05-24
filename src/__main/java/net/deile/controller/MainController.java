@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-//import net.deile.entity.User;
+import net.deile.entity.User;
 
 //import net.deile.service.LoginUserService;
 
@@ -30,14 +30,14 @@ public class MainController {
 		return template;
 	}
 
-	//	@GetMapping("dashboard")
-	//	public String showDashboard(@AuthenticationPrincipal User user, Model model) {
-	//		String template = "dashboard";
-	//		// 参加する予定のカレンダー
-	//
-	//		// 参加する予定のイベントの一覧
-	//
-	//		return template;
-	//
-	//	}
+	@GetMapping("dashboard")
+	public String showDashboard(@AuthenticationPrincipal User user, Model model) {
+		String template = "dashboard";
+		// 参加する予定のカレンダー
+
+		// 参加する予定のイベントの一覧
+
+		return template;
+
+	}
 }

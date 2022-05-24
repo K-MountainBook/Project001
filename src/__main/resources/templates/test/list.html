@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+<head th:replace="header :: common_header">
+    <meta charset="UTF-8">
+    <title>comment application</title>
+</head>
+<body>
+    <div th:replace="header :: header"></div>
+    <h3>comment</h3>
+    <form th:action="@{/test/comment/add}" th:object="${comment}" method="post">
+        <label>Comment:</label><input type="text" th:field="*{content}">
+        <button>登録</button>
+        <br> <small style="color:red" th:errors="*{content}"></small>
+    </form>
+    <br>
+    <h3>list</h3>
+    <div th:each="comment : ${comments}">
+        <div>[[${comment.id}]] - [[${comment.content}]]</div>
+    </div>
+    <div th:replace="footer :: footer"></div>
+</body>
+</html>

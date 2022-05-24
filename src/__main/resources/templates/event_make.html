@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	lang="ja">
+<head th:replace="header :: common_header(title = 'Make Event')">
+</head>
+<body>
+	<div th:replace="header :: header"></div>
+	<!--/* イベント作成フォームを作成 */-->
+	<div sec:authorize="isAnonymous()">
+			イベントを作成する場合<a th:href="@{/login}">ログイン</a>してください。
+	</div>
+	<div sec:authorize="isAuthenticated()">
+		<form th:action="@{/event/make}" method="post" name="EventForm">
+			<p>
+				<!-- イベントタイトル -->
+				<label>イベント名</label> <input type="text" id="title" name="title"
+					class="form-control" placeholder="Title">
+			</p>
+			<p>
+				<!-- イベント詳細 -->
+				<label>開催概要</label>
+				<textarea id="details" name="details" class="form-control"
+					placeholder="Details"></textarea>
+			</p>
+			<p>
+				<!-- 開催日 -->
+				<label>開催日</label> <input type="date" id="fromDate" name="fromDate"
+					class="form-control" placeholder="Date"><input type="date"
+					id="toDate" name="toDate" class="form-control" placeholder="Date">
+				<input type="time" id="from" name="fromTime" class="form-control"
+					placeholder="Date"> <input type="time" id="to"
+					name="toTime" class="form-control" placeholder="Date">
+			</p>
+			<p>
+				<!-- 会場 -->
+				<label>会場</label> <input type="text" id="address" name="address"
+					class="form-control" placeholder="Address">
+			</p>
+			<p>
+				<!-- 参加可能人数 -->
+				<label>参加可能人数</label> <input type="number" id="max_participant"
+					name="max_participant" class="form-control"
+					placeholder="max_participant">
+			</p>
+			<p>
+				<!-- 公開フラグ -->
+				<input type="checkbox" id="public_flag" name="public_flag"
+					class="form-check-input" placeholder="public_flag" checked>
+				<label>全体公開</label>
+				<!-- id -->
+			</p>
+			<button class="btn btn-primary" type="submit">確認</button>
+		</form>
+	</div>
+	<div th:replace="footer :: footer"></div>
+
+</body>
+</html>
