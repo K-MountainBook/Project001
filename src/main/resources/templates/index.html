@@ -15,9 +15,9 @@
 
 		<div class="row justify-content-center" style="margin-bottom: 30px;">
 			<div class="col-md-4 bannerBlock">
-				<a href="https://github.com/K-MountainBook/MinecraftDeileServerMods">
-					<img th:src="@{/img/mod_banner.png}"> <span><i
-						class="bi bi-minecart-loaded"></i><br>RequireMod<br>(GitHub)</span>
+				<a
+					th:href="@{https://github.com/K-MountainBook/MinecraftDeileServerMods}">
+					<img th:src="@{/img/mod_banner.png}"> <span><i class="bi bi-minecart-loaded"></i><br>RequireMod<br>(GitHub)</span>
 				</a>
 			</div>
 			<div class="col-md-4 bannerBlock">
@@ -27,8 +27,16 @@
 				</a>
 			</div>
 		</div>
-
-
+		<div class="row justify-content-center" style="margin-bottom: 30px;">
+			<div class="col-md-8 bannerBlockLong">
+				<a
+					th:href="@{https://twitter.com/messages/compose?recipient_id=90141473}"
+					target="_blank"> <img th:src="@{/img/minecraft_image.webp}">
+					<span> <i class="bi bi-chat-left-dots"></i><br>Contact<br>(TwitterDM)
+				</span>
+				</a>
+			</div>
+		</div>
 	</div>
 	<div th:replace="footer :: footer"></div>
 </body>

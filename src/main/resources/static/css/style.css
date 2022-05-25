@@ -30,7 +30,6 @@ ul li {
 	width: 300px;
 	height: 300px;
 	position: relative;
-	padding: 0;
 }
 
 .bannerBlock span {
@@ -41,17 +40,46 @@ ul li {
 	top: 50%;
 	color: #FFF;
 	transform: translate(-50%, -50%);
-	position: absolute;
 }
 
 .bannerBlock img {
 	border-radius: 10px;
 	height: 300px;
 	width: 300px;
-	transition: all 1s ease 0s;
-	height: 300px;
+	transition: opacity 1s ease 0s;
 }
 
 .bannerBlock img:hover {
+	opacity: .5;
+}
+
+.bannerBlockLong {
+	text-align: center;
+	margin-left: 10px;
+	margin-right: 10px;
+	padding: 0;
+	position: relative;
+}
+
+.bannerBlockLong span {
+	font-size: 24px;
+	position: absolute;
+	text-align: center;
+	left: 50%;
+	top: 50%;
+	color: #FFF;
+	transform: translate(-50%, -50%);
+}
+
+.bannerBlockLong img {
+	border-radius: 10px;
+	height: 156px;
+	width: 626px;
+	transition: opacity 1s ease 0s;
+	z-index: 0;
+	object-fit: cover;
+}
+
+.bannerBlockLong img:hover {
 	opacity: .5;
 }
