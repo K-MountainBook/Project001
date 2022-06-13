@@ -2,7 +2,6 @@ package net.deile.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,14 +29,15 @@ public class MainController {
 		return template;
 	}
 
-	//	@GetMapping("dashboard")
-	//	public String showDashboard(@AuthenticationPrincipal User user, Model model) {
-	//		String template = "dashboard";
-	//		// 参加する予定のカレンダー
+	// @GetMapping("dashboard")
+	// public String showDashboard(@AuthenticationPrincipal User user, Model model)
+	// {
+	// String template = "dashboard";
+	// // 参加する予定のカレンダー
 	//
-	//		// 参加する予定のイベントの一覧
+	// // 参加する予定のイベントの一覧
 	//
-	//		return template;
+	// return template;
 	//
-	//	}
+	// }
 }
