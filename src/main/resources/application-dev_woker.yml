@@ -1,24 +1,24 @@
-
 spring:
   datasource:
-    driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://localhost:3306/test
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test
     username: javaroot
     password: rootpassword
-    
   messages:
     fallback-to-system-locale: false
-#  jpa:
-#    show-sql: true
-#    hibernate:
-#      ddl-auto: none
-
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
 logging:
   file:
     name: logs/spring-boot.log
   level:
     org:
-      springframework:
-        jdbc:
-          core : TRACE
-          
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+          EnumType: TRACE
