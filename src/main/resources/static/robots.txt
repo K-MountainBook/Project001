@@ -1,0 +1,3 @@
+# MJ12bot measures
+User-agent: MJ12bot
+Disallow: /
