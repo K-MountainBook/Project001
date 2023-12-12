@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -23,6 +24,7 @@ public class MainController {
 
 	Logger logger = LoggerFactory.getLogger(Thread.currentThread().getStackTrace()[1].getClassName());
 
+	@CrossOrigin
 	@GetMapping({ "", "index" })
 	public String index(Model model) {
 		String template = "index";
